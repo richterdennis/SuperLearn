@@ -4,8 +4,9 @@
   "description": "This is the frontend part from a very nice project called SuperLearn",
   "main": "index.js",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "start": "npm run dev:open",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "dev:open": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
     "build": "npm run build:production",
     "build:production": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "test": "echo \"Error: no test specified\" && exit 1"
