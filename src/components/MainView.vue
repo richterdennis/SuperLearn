@@ -1,7 +1,7 @@
 <template>
     <navbar>
         <navitem name="Home" :selected="true">
-            <h1>Hello World!</h1>
+            <module-list-view></module-list-view>
         </navitem>
 
         <navitem name="Meine Fragen">
@@ -27,16 +27,17 @@
 </template>
 
 <script>
-import Vue from 'vue';
-
 import Navbar from './md/Navbar.vue';
 import Navitem from './md/Navitem.vue';
+
+import ModuleListView from './ModuleListView.vue';
 
 export default {
     name: 'mainView',
     components: {
         Navbar,
-        Navitem
+        Navitem,
+        ModuleListView
     }
 }
 </script>
