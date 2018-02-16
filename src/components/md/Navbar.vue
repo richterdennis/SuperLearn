@@ -19,7 +19,7 @@
                 </div>
             </nav>
         </div>
-        <div class="col s12 push-l1 l10">
+        <div class="col s12 push-l2 l8 push-xl3 xl6">
             <slot></slot>
         </div>
     </div>
