@@ -11,14 +11,14 @@
                             <a href="#" @click="navItemClicked(item)">{{item.name}}</a>
                         </li>
                     </ul>
-                    <ul class="side-nav" id="mobile-nav">
-                        <li v-for="item in navitems" :key="item.name" :class="{'active': item.isActive}">
-                            <a href="#" @click="navItemClicked(item)">{{item.name}}</a>
-                        </li>
-                    </ul>
                 </div>
             </nav>
         </div>
+        <ul class="side-nav" id="mobile-nav">
+            <li v-for="item in navitems" :key="item.name" :class="{'active': item.isActive}">
+                <a href="#" @click="navItemClicked(item)">{{item.name}}</a>
+            </li>
+        </ul>
         <div class="col s12 push-l2 l8 push-xl3 xl6">
             <slot></slot>
         </div>
@@ -54,6 +54,7 @@ export default {
             this.navitems.forEach(item => {
                 item.isActive = (item.name == selectedItem.name);
             });
+            selectedItem.$emit('click');
         }
     }
 }

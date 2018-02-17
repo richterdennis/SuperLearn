@@ -1,5 +1,5 @@
 <template>
-    <div class="collection">
+    <div id="module-list-view" class="collection">
         <a href="#" class="collection-item avatar" v-for="item in list" :key="item.id">
             <i class="circle">{{item.shortDesc}}</i>
             <span class="title">{{item.longDesc}}</span>

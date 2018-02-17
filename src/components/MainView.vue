@@ -1,5 +1,5 @@
 <template>
-    <navbar>
+    <navbar id="main-view">
         <navitem name="Home" :selected="true">
             <module-list-view></module-list-view>
         </navitem>
@@ -20,9 +20,7 @@
 
         </navitem>
         
-        <navitem name="Logout">
-
-        </navitem>
+        <navitem name="Logout" @click="doLogout"></navitem>
     </navbar>
 </template>
 
@@ -38,6 +36,12 @@ export default {
         Navbar,
         Navitem,
         ModuleListView
+    },
+    methods: {
+        doLogout() {
+            Cache.clear();
+            this.$emit('loggedInStateChange');
+        }
     }
 }
 </script>
