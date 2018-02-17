@@ -1,6 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
 
+import Cache from "./classes/Cache";
+import Api from "./classes/Api";
+
+window.Cache = Cache;
+window.Api = Api;
+
 window.App = window.App || {};
 Object.assign(window.App, {
     VERSION: "v1.0.0-alpha.0",
