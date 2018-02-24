@@ -46,7 +46,7 @@ export default {
         });
     },
     mounted() {
-        $(".button-collapse").sideNav();
+        $(".button-collapse").sideNav({closeOnClick: true});
     },
     methods: {
         navItemClicked(selectedItem) {
@@ -54,6 +54,7 @@ export default {
             this.navitems.forEach(item => {
                 item.isActive = (item.name == selectedItem.name);
             });
+
             selectedItem.$emit('click');
         }
     }
