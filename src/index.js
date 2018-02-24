@@ -5,6 +5,10 @@ import Cache from "./classes/Cache";
 import Api from "./classes/Api";
 
 window.Cache = Cache;
+window.Cache.MINUTE = 60;
+window.Cache.HOUR = 60 * 60;
+window.Cache.DAY = 60 * 60 * 24;
+
 window.Api = Api;
 
 window.App = window.App || {};

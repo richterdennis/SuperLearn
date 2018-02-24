@@ -27,10 +27,6 @@ export class CacheEntry {
     }
 }
 
-export const MINUTE = 60;
-export const HOUR = 60 * 60;
-export const DAY = 60 * 60 * 24;
-
 export default class Cache {
 	static get(key) {
         const cacheEntry = JSON.parse(localStorage.getItem(key));

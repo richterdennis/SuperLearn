@@ -1,50 +1,41 @@
 export default class Api {
-    static get(path) {
-        return fetch(App.API_ADDRESS + path, {
+    static _fetch(method, path, body = null) {
+        const options = {
+            method: method,
             headers: {
                 'Content-Type': 'application/json',
                 'X-App-Key': App.API_APP_TOKEN,
                 'X-User-Token': Cache.get(App.CACHE.TOKEN) && Cache.get(App.CACHE.TOKEN).token
             },
             cache: 'no-cache'
+        };
+
+        if(body) {
+            options.body = JSON.stringify(body);
+        }
+
+        return fetch(App.API_ADDRESS + path, options).then(res => {
+            if (!res.status.toString().startsWith('2')) {
+                throw res;
+            }
+
+            return res.json();
         });
+    }
+    
+    static get(path) {
+        return Api._fetch('GET', path);
     }
 
     static post(path, body) {
-        return fetch(App.API_ADDRESS + path, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-App-Key': App.API_APP_TOKEN,
-                'X-User-Token': Cache.get(App.CACHE.TOKEN) && Cache.get(App.CACHE.TOKEN).token
-            },
-            body: JSON.stringify(body),
-            cache: 'no-cache'
-        });
+        return Api._fetch('POST', path, body);
     }
 
     static put(path, body) {
-        return fetch(App.API_ADDRESS + path, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-App-Key': App.API_APP_TOKEN,
-                'X-User-Token': Cache.get(App.CACHE.TOKEN) && Cache.get(App.CACHE.TOKEN).token
-            },
-            body: JSON.stringify(body),
-            cache: 'no-cache'
-        });
+        return Api._fetch('PUT', path, body);
     }
 
     static delete(path) {
-        return fetch(App.API_ADDRESS + path, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-App-Key': App.API_APP_TOKEN,
-                'X-User-Token': Cache.get(App.CACHE.TOKEN) && Cache.get(App.CACHE.TOKEN).token
-            },
-            cache: 'no-cache'
-        });
+        return Api._fetch('DELETE', path);
     }
 }
