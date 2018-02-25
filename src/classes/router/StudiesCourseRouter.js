@@ -6,7 +6,7 @@ export default class StudiesCourseRouter {
         }
 
         return Api.get('/studiesCourses').then(courses => {
-            Cache.set(App.CACHE.STUDIES_COURSES, courses, Cache.HOUR);
+            Cache.add(App.CACHE.STUDIES_COURSES, courses, Cache.HOUR);
             return courses;
         })
     }

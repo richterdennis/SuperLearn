@@ -3,7 +3,7 @@ import UUID from '../UUID.js';
 export default class UserRouter {
     static createUser(user) {
         return Api.post("/me", user).then(token => {
-            Cache.set(App.CACHE.TOKEN, token, token.expires - Date.now() / 1000);
+            Cache.add(App.CACHE.TOKEN, token, token.expires - Date.now() / 1000);
             return token;
         });
     }
@@ -15,7 +15,7 @@ export default class UserRouter {
         }
         
         return Api.get("/me").then(me => {
-            Cache.set(App.CACHE.USER_ME, user, 5 * Cache.MINUTE);
+            Cache.add(App.CACHE.USER_ME, me, 5 * Cache.MINUTE);
             return me;
         });
     }
@@ -26,13 +26,13 @@ export default class UserRouter {
 
     static loginUser(login) {
         if(!Cache.getLast(App.CACHE.UUID)) {
-            Cache.set(App.CACHE.UUID, UUID.randomUUID(), 0);
+            Cache.add(App.CACHE.UUID, UUID.randomUUID(), 0);
         }
 
         login.deviceId = 'web:' + Cache.getLast(App.CACHE.UUID);
 
         return Api.post("/me/login", login).then(token => {
-            Cache.set(App.CACHE.TOKEN, token, token.expires - Date.now() / 1000);
+            Cache.add(App.CACHE.TOKEN, token, token.expires - Date.now() / 1000);
             return token;
         });
     }
@@ -48,7 +48,7 @@ export default class UserRouter {
         }
 
         return Api.get("/user/").then(users => {
-            Cache.set(App.CACHE.WALL_OF_FAME, users, 1 * Cache.DAY);
+            Cache.add(App.CACHE.WALL_OF_FAME, users, 1 * Cache.DAY);
             return users;
         })
     }
