@@ -1,8 +1,9 @@
 <template>
     <div id="module-list-view" class="collection">
-        <a href="#" class="collection-item avatar" v-for="item in semester" :key="item.id">
-            <i class="circle">{{item.shortDesc}}</i>
-            <span class="title">{{item.longDesc}}</span>
+        <a href="#" class="collection-item back" v-if="layer == 1" @click.prevent="showSemesterList"><i class="material-icons">arrow_back</i> <span>Zurück</span></a>
+        <a href="#" class="collection-item avatar" v-for="item in list" :key="item.id" @click.prevent="open(item)">
+            <i class="circle">{{item.short}}</i>
+            <span class="title">{{item.long}}</span>
             <span class="question-counter right">{{item.questions}}</span>
             <div class="progress">
                 <div class="determinate" :style="'width: ' + item.progress + '%'"></div>
@@ -18,22 +19,39 @@ export default {
     name: 'moduleListView',
     data() {
         return {
+            layer: 0,
+            list: [],
+            semester: [],
             modules: []
         }
     },
     mounted() {
         ModuleRouter.getModules().then(modules => {
             this.modules = modules;
+            this.semester = this.generateSemester();
+            this.list = this.semester;
         });
+
     },
-    computed: {
-        semester() {
+    methods: {
+        open(item) {
+            // if item is type of semester
+            if(this.layer == 0) {
+                this.layer = 1;
+                this.list = item.modules;
+            }
+        },
+        showSemesterList() {
+            this.layer = 0;
+            this.list = this.semester;
+        },
+        generateSemester() {
             const semester = [];
 
             semester.push({
                 id: 0,
-                shortDesc: 'M',
-                longDesc: 'Meine Module',
+                short: 'M',
+                long: 'Meine Module',
                 questions: 0,
                 progress: 0,
                 modules: []
@@ -44,8 +62,8 @@ export default {
                     for(let i = semester.length; i <= module.semester; i++) {
                         semester.push({
                             id: i,
-                            shortDesc: i,
-                            longDesc: i + '. Semester',
+                            short: i,
+                            long: i + '. Semester',
                             questions: 0,
                             progress: 0,
                             modules: []
@@ -84,6 +102,19 @@ export default {
 
 .collection-item.avatar {
     min-height: 62px !important;
+}
+
+.collection-item.back {
+    display: flex !important;
+    align-items: center;
+}
+
+.collection-item.back > * {
+    font-size: 17px;
+}
+
+.collection-item.back > span {
+    margin-left: 10px;
 }
 
 .progress {
