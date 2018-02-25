@@ -19,7 +19,13 @@ export default class Api {
                 throw res;
             }
 
-            return res.json();
+            const contentType = res.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                return res.json();
+            }
+            else {
+                return res.text();
+            }
         });
     }
     
