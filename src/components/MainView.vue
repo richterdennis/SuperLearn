@@ -39,7 +39,6 @@ export default {
     },
     methods: {
         doLogout() {
-            Cache.clear();
             this.$emit('loggedInStateChange');
         }
     }
