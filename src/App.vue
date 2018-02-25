@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { TokenRouter, UserRouter, ModuleRouter  } from './classes/Router.js';
+
 import MainView from "./components/MainView.vue";
 import SignView from "./components/SignView.vue";
 
@@ -34,26 +36,29 @@ export default {
         }
     },
     mounted() {
+        Cache.load();
+
         const token = Cache.get(App.CACHE.TOKEN);
         if(token == null) {
             this.currentView = VIEWS.LOGIN;
             return;
         }
 
-        Api.get('/token/test/' + token.token)
-            .then(res => {
-                if(res.status == 200)
-                    return true;
-                
-                throw 'Token is not valid';
-            })
-            .then(ok => {
-                this.currentView = ok ? VIEWS.MAIN : VIEWS.LOGIN;
-            })
-            .catch(err => {
-                this.currentView = VIEWS.LOGIN;
-                console.log(err);
-            });
+        TokenRouter.testToken(token.token).then(() => {
+            if(token.expires - Date.now() / 1000 < 30 * Cache.DAY) {
+                return TokenRouter.updateToken(token.token);
+            }
+        }).then(() => {
+            return Promise.all([
+                ModuleRouter.getModules(),
+                UserRouter.getMe()
+            ]);
+        }).then(() => {
+            this.currentView = VIEWS.MAIN;
+        }).catch(err => {
+            this.currentView = VIEWS.LOGIN;
+            console.error(err);
+        });
     }
 }
 </script>
