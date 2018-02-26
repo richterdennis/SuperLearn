@@ -1,21 +1,33 @@
 <template>
-    <form id="sign-in-view" class="col container" @submit.prevent="doLogin">
+    <div class="section container">
         <div class="row">
-            <div class="input-field col s12">
-                <input id="si-email" name="si-email" type="email" class="validate" required v-model="email">
-                <label for="si-email">Email</label>
+            <div class="col s12 m6 offset-m3">
+                <div class="card logIn-wrapper">
+                    <div class="card-content">
+                        <form id="sign-in-view" @submit.prevent="doLogin">
+                            <div class="row">
+                                <div class="col s6 offset-m3">
+                                    <img class="responsive-img" src="/../assets/logo_icon_font.png" alt="SuperLearn Logo">
+                                </div>
+                            </div>
+                            <h4 class="center green-text">Login</h4>
+                            <div class="input-field">
+                                <label for="si-email" class="active">Email</label>
+                                <input id="si-email" name="si-email" type="email" class="validate" required v-model="email">
+                            </div>
+                            <div class="input-field">
+                                <label for="si-password">Password</label>
+                                <input id="si-password" name="si-password" type="password" class="validate" required v-model="password">
+                            </div>
+                            <input type="submit" class="btn-large green">      
+                            <a href="#" id="RecoverPassword">Forgot your password?</a><br>
+                            <a href="#" id="RecoverPassword">Not a Member yet?</a>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="si-password" name="si-password" type="password" class="validate" required v-model="password">
-                <label for="si-password">Password</label>
-            </div>
-        </div>
-        <div class="row">
-            <button type="submit" class="waves-effect waves-light btn">LOGIN</button>
-        </div>
-    </form>
+    </div>
 </template>
 
 <script>
@@ -55,5 +67,12 @@ export default {
 </script>
 
 <style>
+#app {
+    background-color: #f4f4f4;
+}
+input[type=submit] {
+    width: 100%;
+    margin-bottom: 10px;
+}
 
 </style>

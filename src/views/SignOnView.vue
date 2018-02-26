@@ -1,42 +1,48 @@
 <template>
-    <form id="sign-on-view" class="col container" @submit.prevent="doRegister">
+    <div class="section container">
         <div class="row">
-            <div class="input-field col s12">
-                <input id="so-email" name="so-email" type="email" class="validate" required v-model="email">
-                <label for="so-email">Email</label>
+            <div class="col s12 m6 offset-m3">
+                <div class="card logOn-wrapper">
+                    <div class="card-content">
+                        <form id="sign-on-view" @submit.prevent="doRegister">
+                            <div class="row">
+                                <div class="col s6 offset-m3">
+                                    <img class="responsive-img" src="/../assets/logo_icon_font.png" alt="SuperLearn Logo">
+                                </div>
+                            </div>
+                            <h4 class="center green-text">Create Account</h4>
+
+                            <div class="input-field">
+                                <input id="so-email" name="so-email" type="email" class="validate" required v-model="email">
+                                <label for="so-email">Email</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="so-nickname" name="so-nickname" type="text" class="validate" required v-model="nickname">
+                                <label for="so-nickname">Nickname</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="so-password" name="so-password" type="password" class="validate" required v-model="password">
+                                <label for="so-password">Password</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="so-password2" name="so-password2" type="password" class="validate" required v-model="password2">
+                                <label for="so-password2">Password wiederholen</label>
+                            </div>
+                            <div class="input-field">
+                                <select id="so-courses" name="so-courses" class="validate" required v-model="course" ref="so-courses">
+                                    <option disabled value="-1">-- bitte wählen --</option>
+                                    <option v-for="course in courses" :key="course.id" :value="course.id">{{course.text}}</option>
+                                </select>
+                                <label for="so-courses">Studiengang</label>
+                            </div>
+                            <input type="submit" class="btn-large green">      
+                            <a href="#" id="RecoverPassword">Already got an Account?</a><br>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="so-nickname" name="so-nickname" type="text" class="validate" required v-model="nickname">
-                <label for="so-nickname">Nickname</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="so-password" name="so-password" type="password" class="validate" required v-model="password">
-                <label for="so-password">Password</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="so-password2" name="so-password2" type="password" class="validate" required v-model="password2">
-                <label for="so-password2">Password wiederholen</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <select id="so-courses" name="so-courses" class="validate" required v-model="course" ref="so-courses">
-                    <option disabled value="-1">-- bitte wählen --</option>
-                    <option v-for="course in courses" :key="course.id" :value="course.id">{{course.text}}</option>
-                </select>
-                <label for="so-courses">Studiengang</label>
-            </div>
-        </div>
-        <div class="row">
-            <button type="submit" class="waves-effect waves-light btn">REGISTER</button>
-        </div>
-    </form>
+    </div>
 </template>
 
 <script>
@@ -85,5 +91,12 @@ export default {
 </script>
 
 <style>
+#app {
+    background-color: #f4f4f4;
+}
+input[type=submit] {
+    width: 100%;
+    margin-bottom: 10px;
+}
 
 </style>
