@@ -1,0 +1,68 @@
+<template>
+    <div class="activity row" :style="'z-index: ' + layer + ';'">
+        <div class="activity-nav">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
+                    <span class="nav-title">{{title}}</span>
+                    <slot name="nav"></slot>
+                </div>
+            </nav>
+        </div>
+        <div class="activity-content col s12 push-l2 l8 push-xl3 xl6">
+            <slot></slot>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'activity',
+    props: ['title', 'icon', 'layer'],
+    methods: {
+        onIconClicked() {
+            this.$emit('onIconClicked');
+        }
+    }
+}
+</script>
+
+<style>
+
+.activity {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+.activity .activity-nav .button-collapse {
+    display: block !important;
+}
+
+.activity .activity-nav .nav-title {
+    font-size: 28px;
+}
+
+@media only screen and (max-width: 992px) {
+    .activity .activity-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .activity .activity-content {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .activity .activity-content > * {
+        -webkit-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    }
+}
+
+</style>
