@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import Navbar from './md/Navbar.vue';
-import Navitem from './md/Navitem.vue';
+import Navbar from '../components/Navbar.vue';
+import Navitem from '../components/Navitem.vue';
 
 import ModuleListView from './ModuleListView.vue';
 
