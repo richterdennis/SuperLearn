@@ -5,7 +5,7 @@
         </navitem>
 
         <navitem name="Meine Fragen">
-
+            <question-list-view @titleChanged="changeTitle"></question-list-view>
         </navitem>
 
         <navitem name="Wall of Fame">
@@ -35,6 +35,7 @@ import Activity from '../components/Activity.vue';
 import Navitem from '../components/Navitem.vue';
 
 import ModuleListView from './ModuleListView.vue';
+import QuestionListView from './QuestionListView.vue';
 
 export default {
     name: 'mainView',
@@ -48,7 +49,8 @@ export default {
     components: {
         Activity,
         Navitem,
-        ModuleListView
+        ModuleListView,
+        QuestionListView
     },
     mounted() {
         this.navitems = this.$children[0].$children;
