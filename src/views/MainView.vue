@@ -5,7 +5,7 @@
         </navitem>
 
         <navitem name="Meine Fragen">
-            <question-list-view @titleChanged="changeTitle"></question-list-view>
+            <question-list-view></question-list-view>
         </navitem>
 
         <navitem name="Wall of Fame">

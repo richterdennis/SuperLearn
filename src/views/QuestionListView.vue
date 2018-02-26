@@ -17,7 +17,6 @@ export default {
         }
     },
     mounted() {
-        this.$emit('titleChanged', 'Meine Fragen');
         QuestionRouter.getQuestions().then(questions => {
             this.questions = questions;
         })
