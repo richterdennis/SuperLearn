@@ -9,8 +9,8 @@
 <script>
 import { TokenRouter, UserRouter, ModuleRouter  } from './classes/Router.js';
 
-import MainView from "./components/MainView.vue";
-import SignView from "./components/SignView.vue";
+import MainView from "./views/MainView.vue";
+import SignView from "./views/SignView.vue";
 
 const VIEWS = {
     NONE: 'none',
