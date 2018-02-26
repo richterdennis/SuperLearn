@@ -1,5 +1,10 @@
 <template><div>
     <activity id="main-view" :title="title" icon="menu" layer="5">
+        <template slot="nav">
+            <a href="#" class="avatar"><i class="material-icons">person</i></a>
+            <div class="score">1337</div>
+        </template>
+        
         <navitem name="Home" :selected="true">
             <module-list-view @titleChanged="changeTitle"></module-list-view>
         </navitem>
@@ -90,4 +95,9 @@ export default {
 </script>
 
 <style>
+.activity-nav .score,
+.activity-nav .avatar {
+    float: right;
+    padding: 0 18px;
+}
 </style>
