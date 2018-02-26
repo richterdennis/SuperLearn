@@ -15,6 +15,8 @@
 <script>
 import { ModuleRouter } from '../classes/Router.js';
 
+import RoundView from './RoundView.vue';
+
 export default {
     name: 'moduleListView',
     data() {
@@ -39,6 +41,9 @@ export default {
             if(this.layer == 0) {
                 this.layer = 1;
                 this.list = item.modules;
+            }
+            else {
+                App.startView(RoundView);
             }
         },
         showSemesterList() {

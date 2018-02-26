@@ -3,6 +3,9 @@
         <div class="splashscreen" v-if="currentView == VIEWS.NONE"></div>
         <main-view v-if="currentView == VIEWS.MAIN" @loggedInStateChange="onLoggedInStateChange(false)"></main-view>
         <sign-view v-if="currentView == VIEWS.LOGIN" @loggedInStateChange="onLoggedInStateChange(true)"></sign-view>
+        <template v-for="childView in childViews">
+            <component :is="childView" :key="childView.name" @close="removeChildViews"></component>
+        </template>
     </div>
 </template>
 
@@ -23,7 +26,8 @@ export default {
     data() {
         return {
             VIEWS: VIEWS,
-            currentView: VIEWS.NONE
+            currentView: VIEWS.NONE,
+            childViews: []
         }
     },
     components: {
@@ -33,9 +37,18 @@ export default {
     methods: {
         onLoggedInStateChange(loggedIn) {
             this.currentView = loggedIn ? VIEWS.MAIN : VIEWS.LOGIN;
+        },
+        removeChildViews() {
+            this.childViews.length = 0;
+            this.$forceUpdate();
         }
     },
     mounted() {
+        App.startView = (view) => {
+            this.childViews[0] = view;
+            this.$forceUpdate();
+        }
+
         Cache.load();
 
         const token = Cache.get(App.CACHE.TOKEN);
