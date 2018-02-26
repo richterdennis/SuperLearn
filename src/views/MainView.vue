@@ -1,7 +1,7 @@
 <template><div>
     <activity id="main-view" :title="title" icon="menu" layer="5">
         <navitem name="Home" :selected="true">
-            <module-list-view></module-list-view>
+            <module-list-view @titleChanged="changeTitle"></module-list-view>
         </navitem>
 
         <navitem name="Meine Fragen">
@@ -76,6 +76,9 @@ export default {
 
             this.title = selectedItem.name;
             selectedItem.$emit('click');
+        },
+        changeTitle(title) {
+            this.title = title;
         },
         doLogout() {
             Cache.clear();

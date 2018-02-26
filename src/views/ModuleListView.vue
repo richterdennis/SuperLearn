@@ -41,6 +41,7 @@ export default {
             if(this.layer == 0) {
                 this.layer = 1;
                 this.list = item.modules;
+                this.$emit('titleChanged', item.long);
             }
             else {
                 App.startView(RoundView);
@@ -49,6 +50,7 @@ export default {
         showSemesterList() {
             this.layer = 0;
             this.list = this.semester;
+            this.$emit('titleChanged', 'Home');
         },
         generateSemester() {
             const semester = [];
