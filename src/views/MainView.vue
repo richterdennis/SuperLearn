@@ -13,7 +13,7 @@
         </navitem>
 
         <navitem name="Regeln">
-
+            <rules-view @titleChanged="changeTitle"></rules-view>
         </navitem>
         
         <navitem name="Info">
@@ -35,6 +35,7 @@ import Activity from '../components/Activity.vue';
 import Navitem from '../components/Navitem.vue';
 
 import ModuleListView from './ModuleListView.vue';
+import RulesView from './RulesView.vue';
 
 export default {
     name: 'mainView',
@@ -48,7 +49,8 @@ export default {
     components: {
         Activity,
         Navitem,
-        ModuleListView
+        ModuleListView,
+        RulesView
     },
     mounted() {
         this.navitems = this.$children[0].$children;
