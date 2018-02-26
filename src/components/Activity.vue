@@ -4,6 +4,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
+                    <span class="brand-logo hide-on-med-and-down"></span>
                     <span class="nav-title">{{title}}</span>
                     <slot name="nav"></slot>
                 </div>
@@ -42,8 +43,16 @@ export default {
     display: block !important;
 }
 
+.activity .activity-nav .brand-logo {
+    background: url('/assets/logo_font.png') no-repeat center;
+    background-size: contain;
+    height: 100%;
+    width: 200px;
+}
+
 .activity .activity-nav .nav-title {
     font-size: 28px;
+    padding: 0 10px !important;
 }
 
 @media only screen and (max-width: 992px) {
@@ -54,6 +63,11 @@ export default {
 }
 
 @media only screen and (min-width: 993px) {
+
+    .activity .activity-nav .nav-title {
+        margin-left: 200px;
+    }
+
     .activity .activity-content {
         padding-top: 2rem;
         padding-bottom: 2rem;
