@@ -17,7 +17,7 @@
         </navitem>
         
         <navitem name="Info">
-
+            <info-view @titleChanged="changeTitle"></info-view>
         </navitem>
         
         <navitem name="Logout" @click="doLogout"></navitem>
@@ -36,6 +36,7 @@ import Navitem from '../components/Navitem.vue';
 
 import ModuleListView from './ModuleListView.vue';
 import RulesView from './RulesView.vue';
+import InfoView from './InfoView.vue';
 
 export default {
     name: 'mainView',
@@ -50,7 +51,8 @@ export default {
         Activity,
         Navitem,
         ModuleListView,
-        RulesView
+        RulesView,
+        InfoView
     },
     mounted() {
         this.navitems = this.$children[0].$children;
