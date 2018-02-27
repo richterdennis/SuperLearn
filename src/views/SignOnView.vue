@@ -39,7 +39,7 @@
                                     <input type="checkbox" id="test5" />
                                     <label for="test5">Bitte lese unsere <a href="#">Regeln</a> bevor du einen Account erstellst.</label>
                                 </p>
-                            <input type="submit" class="btn-large green">      
+                            <input type="submit" class="btn-large green disabled">      
                             <a href="#">Du hast schon einen Account?</a><br>
                         </form>
                     </div>
