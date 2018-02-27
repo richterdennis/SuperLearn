@@ -6,7 +6,7 @@
                     <div class="card-content">
                         <form id="sign-on-view" @submit.prevent="doRegister">
                             <div class="row">
-                                <div class="col s6 offset-m3">
+                                <div class="col s12 m6 offset-m3">
                                     <img class="responsive-img" src="/../assets/logo_icon_font.png" alt="SuperLearn Logo">
                                 </div>
                             </div>
@@ -101,6 +101,14 @@ export default {
 input[type=submit] {
     width: 100%;
     margin: 10px 0 10px 0;
+}
+
+@media only screen 
+  and (min-device-width: 600px)
+  {
+    .card {
+        margin-top: 25%;
+    }   
 }
 
 </style>
