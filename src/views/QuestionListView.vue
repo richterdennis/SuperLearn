@@ -1,9 +1,10 @@
 <template>
-    <div id="question-list-view" class="collection">
-        <a href="#" class="collection-item" v-for="question in questions" :key="question.id" >
-            <span class="title">{{question.text}}</span>
-        </a>
-    </div>
+    <ul id="question-list-view" class="collapsible" data-collapsible="accordion">
+        <li v-for="question in questions" :key="question.id">
+            <div class="collapsible-header">{{question.text}}<span class="badge">{{question.score}}</span></div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+    </ul>
 </template>
 
 <script>
@@ -17,6 +18,8 @@ export default {
         }
     },
     mounted() {
+        $('.collapsible').collapsible();
+
         QuestionRouter.getQuestions().then(questions => {
             this.questions = questions;
         })
