@@ -10,18 +10,18 @@
                                     <img class="responsive-img" src="/../assets/logo_icon_font.png" alt="SuperLearn Logo">
                                 </div>
                             </div>
-                            <h4 class="center green-text">Login</h4>
+                            <h4 class="center green-text">Anmelden</h4>
                             <div class="input-field">
                                 <label for="si-email" class="active">Email</label>
                                 <input id="si-email" name="si-email" type="email" class="validate" required v-model="email">
                             </div>
                             <div class="input-field">
-                                <label for="si-password">Password</label>
+                                <label for="si-password">Passwort</label>
                                 <input id="si-password" name="si-password" type="password" class="validate" required v-model="password">
                             </div>
                             <input type="submit" class="btn-large green">      
-                            <a href="#" id="RecoverPassword">Forgot your password?</a><br>
-                            <a href="#" id="RecoverPassword">Not a Member yet?</a>
+                            <a href="#" id="RecoverPassword">Passwort vergessen?</a><br>
+                            <a href="#" id="RecoverPassword">Noch kein Mitglied?</a>
                         </form>
                     </div>
                 </div>
