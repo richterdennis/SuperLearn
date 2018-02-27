@@ -10,7 +10,7 @@
                                     <img class="responsive-img" src="/../assets/logo_icon_font.png" alt="SuperLearn Logo">
                                 </div>
                             </div>
-                            <h4 class="center green-text">Create Account</h4>
+                            <h4 class="center green-text">Account erstellen</h4>
 
                             <div class="input-field">
                                 <input id="so-email" name="so-email" type="email" class="validate" required v-model="email">
@@ -22,11 +22,11 @@
                             </div>
                             <div class="input-field">
                                 <input id="so-password" name="so-password" type="password" class="validate" required v-model="password">
-                                <label for="so-password">Password</label>
+                                <label for="so-password">Passwort</label>
                             </div>
                             <div class="input-field">
                                 <input id="so-password2" name="so-password2" type="password" class="validate" required v-model="password2">
-                                <label for="so-password2">Password wiederholen</label>
+                                <label for="so-password2">Passwort wiederholen</label>
                             </div>
                             <div class="input-field">
                                 <select id="so-courses" name="so-courses" class="validate" required v-model="course" ref="so-courses">
@@ -35,8 +35,12 @@
                                 </select>
                                 <label for="so-courses">Studiengang</label>
                             </div>
+                                <p>
+                                    <input type="checkbox" id="test5" />
+                                    <label for="test5">Bitte lese unsere <a href="#">Regeln</a> bevor du einen Account erstellst.</label>
+                                </p>
                             <input type="submit" class="btn-large green">      
-                            <a href="#" id="RecoverPassword">Already got an Account?</a><br>
+                            <a href="#">Du hast schon einen Account?</a><br>
                         </form>
                     </div>
                 </div>
@@ -96,7 +100,7 @@ export default {
 }
 input[type=submit] {
     width: 100%;
-    margin-bottom: 10px;
+    margin: 10px 0 10px 0;
 }
 
 </style>
