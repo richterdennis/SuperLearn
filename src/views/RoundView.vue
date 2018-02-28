@@ -7,7 +7,7 @@
             <answer-response-view :question="answerResponse.question" :answer="answerResponse.givenAnswer" :key="answerResponse.question.id" @next="onNext"></answer-response-view>
         </template>
         <template v-for="roundResponse in roundResponses">
-            <round-response-view :round="roundResponse.round" :answers="answerResponse.givenAnswers" :key="roundResponse.round.id"></round-response-view>
+            <round-response-view :round="roundResponse.round" :answers="roundResponse.givenAnswers" :key="roundResponse.round.id"></round-response-view>
         </template>
     </activity>
 </template>
@@ -65,17 +65,13 @@ export default {
 
             this.title = `Frage ${currentQuestionIndex} von ${this.round.questions.length}`;
 
-            this.questions.length = 0;
-            this.answerResponses.length = 0;
-            this.roundResponses.length = 0;
+            this.answerResponses.splice(0);
             this.questions.push(question);
         },
         onAnswer(question, givenAnswer) {
             this.givenAnswers.push(givenAnswer);
 
-            this.questions.length = 0;
-            this.answerResponses.length = 0;
-            this.roundResponses.length = 0;
+            this.questions.splice(0);
             this.answerResponses.push({question, givenAnswer});
         },
         onNext(question) {
@@ -84,9 +80,7 @@ export default {
                 this.showNextQuestion(currentQuestionIndex);
             }
             else {
-                this.questions.length = 0;
-                this.answerResponses.length = 0;
-                this.roundResponses.length = 0;
+                this.answerResponses.splice(0);
                 this.roundResponses.push({
                     round: this.round,
                     givenAnswers: this.givenAnswers
@@ -105,7 +99,7 @@ export default {
                 case 2:
                     let answerLength = 0;
                     question.answers.forEach(answer => {
-                        answerLength += a.text.length;
+                        answerLength += answer.text.length;
                     });
                     duration += answerLength / 10 - 6;
                     break;

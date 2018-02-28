@@ -7,7 +7,9 @@
         <div class="progress">
             <div class="determinate" style="width: 100%" ref="progress"></div>
         </div>
-        <div class="answer-type-view-holder"></div>
+        <div class="answer-type-view-holder" v-if="answerView">
+            <component :is="answerView" :answers="question.answers" @answer="answer"></component>
+        </div>
         <div class="star-counter">StarCounter: {{question.starCounter}}</div>
     </div>
 </template>
@@ -15,16 +17,39 @@
 <script>
 import Voting from '../components/Voting.vue';
 
+import AnswerBooleanView from './AnswerBooleanView.vue';
+import AnswerFourView from './AnswerFourView.vue';
+import AnswerExactView from './AnswerExactView.vue';
+
 import { VoteRouter } from '../classes/Router.js';
+
+const questionTypeMapping = {
+    1: 'AnswerBooleanView',
+    2: 'AnswerFourView',
+    3: 'AnswerExactView'
+};
 
 export default {
     name: 'questionView',
     props: ['question'],
     components: {
-        Voting
+        Voting,
+        AnswerBooleanView,
+        AnswerFourView,
+        AnswerExactView
+    },
+    data() {
+        return {
+            progress: null
+        };
+    },
+    computed: {
+        answerView() {
+            return questionTypeMapping[this.question.questionType];
+        }
     },
     mounted() {
-        new mojs.Tween({
+        this.progress = new mojs.Tween({
             duration: this.question.duration * 1000,
             onUpdate: (progress) => {
                 progress = 100 - progress * 100;
@@ -42,6 +67,7 @@ export default {
             });
         },
         answer(givenAnswer) {
+            this.progress.stop();
             this.$emit('answer', this.question, givenAnswer);
         }
     }
