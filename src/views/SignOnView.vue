@@ -74,7 +74,6 @@ export default {
 		        rank: 1,
 		        studiesCourseId: this.course
             }).then(token => {
-                Cache.save();
                 this.$emit('loggedInStateChange');
             }).catch(e => {
                 throw 'Something went wrong!';

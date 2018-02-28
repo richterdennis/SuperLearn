@@ -44,7 +44,9 @@ export default {
                 this.$emit('titleChanged', item.long);
             }
             else {
-                App.startView(RoundView);
+                App.startView(RoundView, {
+                    module: item
+                });
             }
         },
         showSemesterList() {

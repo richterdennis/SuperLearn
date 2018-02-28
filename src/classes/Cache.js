@@ -18,7 +18,7 @@ export function load() {
     }
 }
 
-export function save() {
+function _save() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(memoryStorage));
 }
 
@@ -43,6 +43,7 @@ export function getLast(key) {
 export function add(key, value, lifetime) {
     const cacheEntry = new CacheEntry(lifetime, value);
     memoryStorage[key] = cacheEntry;
+    _save();
 }
 
 export function remove(key) {
@@ -53,6 +54,7 @@ export function clear() {
     for(const key in memoryStorage) {
         memoryStorage[key] = null;
     }
+    _save();
 }
 
 class CacheEntry {

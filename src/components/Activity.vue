@@ -1,5 +1,5 @@
 <template>
-    <div class="activity row" :style="'z-index: ' + layer + ';'">
+    <div class="activity" :style="'z-index: ' + layer + ';'">
         <div class="activity-nav">
             <nav>
                 <div class="nav-wrapper">
@@ -37,6 +37,7 @@ export default {
     width: 100%;
     height: 100%;
     background: white;
+    margin: 0 !important;
 }
 
 .activity .activity-nav .button-collapse {

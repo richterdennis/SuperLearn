@@ -4,7 +4,7 @@
             <a href="#" class="avatar"><i class="material-icons">person</i></a>
             <div class="score">1337</div>
         </template>
-        
+
         <navitem name="Home" :selected="true">
             <module-list-view @titleChanged="changeTitle"></module-list-view>
         </navitem>
@@ -20,11 +20,11 @@
         <navitem name="Regeln">
 
         </navitem>
-        
+
         <navitem name="Info">
 
         </navitem>
-        
+
         <navitem name="Logout" @click="doLogout"></navitem>
     </activity>
 
@@ -87,7 +87,6 @@ export default {
         },
         doLogout() {
             Cache.clear();
-            Cache.save();
             this.$emit('loggedInStateChange');
         }
     }
