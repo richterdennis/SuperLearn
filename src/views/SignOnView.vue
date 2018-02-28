@@ -36,10 +36,10 @@
                                 <label for="so-courses">Studiengang</label>
                             </div>
                                 <p>
-                                    <input type="checkbox" id="test5" />
-                                    <label for="test5">Bitte lese unsere <a href="#">Regeln</a> bevor du einen Account erstellst.</label>
+                                    <input type="checkbox" id="rules_ckeck" v-model="checked" />
+                                    <label for="rules_ckeck">Bitte lese unsere <a href="#">Regeln</a> bevor du einen Account erstellst.</label>
                                 </p>
-                            <input type="submit" class="btn-large green disabled">      
+                            <input type="submit" class="btn-large green" :disabled="!checked">      
                             <a href="#">Du hast schon einen Account?</a><br>
                         </form>
                     </div>
@@ -61,7 +61,8 @@ export default {
             password: '',
             password2: '',
             course: -1,
-            courses: []
+            courses: [],
+            checked : false
         }
     },
     mounted() {
@@ -110,5 +111,4 @@ input[type=submit] {
         margin-top: 25%;
     }   
 }
-
 </style>

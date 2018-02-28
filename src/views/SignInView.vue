@@ -20,8 +20,8 @@
                                 <input id="si-password" name="si-password" type="password" class="validate" required v-model="password">
                             </div>
                             <input type="submit" class="btn-large green">      
-                            <a href="#" id="RecoverPassword">Passwort vergessen?</a><br>
-                            <a href="#" id="RecoverPassword">Noch kein Mitglied?</a>
+                            <a href="#">Passwort vergessen?</a><br>
+                            <a href="#">Noch kein Mitglied?</a>
                         </form>
                     </div>
                 </div>
@@ -64,6 +64,12 @@ export default {
         }
     }
 }
+/* var pattern = Trianglify({
+    height: 300,
+    width: 300,
+    cell_size: 40});
+
+    document.body.appendChild(pattern.canvas()); */
 </script>
 
 <style>
