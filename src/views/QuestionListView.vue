@@ -52,7 +52,7 @@ export default {
         return {
             questions: [],
             sortbyOptions: [
-                { text: 'Name', id: 0 },
+                { text: 'Fragetext', id: 0 },
                 { text: 'Bewertung', id: 1 },
                 { text: 'Datum', id: 2 }
             ],
