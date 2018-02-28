@@ -1,5 +1,25 @@
 <template>
     <ul id="question-list-view" class="collapsible" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header">
+                <div class="row nomargin">
+                    <div class="input-field col s6">
+                        <select name="so-sortby" id="so-sortby" v-model="sortby" ref="so-sortby">
+                            <option value="-1" disabled selected>Sortieren nach...</option>
+                            <option v-for="sortby in sortbyOptions" :key="sortby.id" :value="sortby.id">{{ sortby.text }}</option>
+                        </select>
+                        <label for="so-sortby">Sortieren nach...</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select name="so-orderby" id="so-orderby" v-model="orderby" ref="so-orderby">
+                            <option value="-1" disabled selected>Sortierreihenfolge</option>
+                            <option v-for="orderby in orderbyOptions" :key="orderby.id" :value="orderby.id">{{ orderby.text }}</option>
+                        </select>
+                        <label for="so-sortby">Sortierreihenfolge</label>
+                    </div>
+                </div>
+            </div>
+        </li>
         <li v-for="question in questions" :key="question.id">
             <div class="collapsible-header"><span class="truncate">{{question.text}}</span><span class="badge">{{ question.score }}</span></div>
             <div class="collapsible-body">
@@ -30,10 +50,25 @@ export default {
     name: 'questionListView',
     data() {
         return {
-            questions: []
+            questions: [],
+            sortbyOptions: [
+                { text: 'Name', id: 0 },
+                { text: 'Bewertung', id: 1 },
+                { text: 'Datum', id: 2 }
+            ],
+            orderbyOptions: [
+                { text: 'Aufsteigend', id: 0 },
+                { text: 'Absteigend', id: 1 }
+            ],
+            sortby: -1,
+            orderby: -1
         }
     },
     mounted() {
+        $('select').material_select();
+        $('select').on('change', (e) =>{
+            this.sortingChanged(e);
+        });
         $('.collapsible').collapsible();
 
         QuestionRouter.getQuestions().then(questions => {
@@ -49,6 +84,40 @@ export default {
         },
         timeStampToDate(timestamp) {
             return new Date(timestamp).toLocaleDateString();
+        },
+        sortingChanged(e) {
+            this.orderby = this.$refs["so-orderby"].value;
+            this.sortby = this.$refs["so-sortby"].value; 
+            
+            let compareFunction = this.sortByName;
+            switch (this.sortby)
+            {
+                case '0':
+                    compareFunction = this.sortByName;
+                    break;
+                case '1':
+                    compareFunction = this.sortByScore;
+                    break;
+                case '2':
+                    compareFunction = this.sortByDate;
+                    break;
+                default:
+                    compareFunction = this.sortByDate;
+            }
+
+            this.questions.sort(compareFunction);
+
+            if (this.orderby == 1)
+                this.questions.reverse();
+        },
+        sortByName(a,b) {
+            return a.text > b.text ? 1 : -1;
+        },
+        sortByScore(a,b) {
+            return a.score > b.score ? 1 : -1;
+        },
+        sortByDate(a,b) {
+            return a.created > b.created ? 1 : -1;
         }
     }
 }
@@ -79,6 +148,10 @@ export default {
     }
     .row.nomargin {
         margin-bottom: 0;
+        width:100%;
+    }
+    .collapsible-header .select-dropdown {
+        margin-bottom: 0  !important;
     }
 </style>
 
