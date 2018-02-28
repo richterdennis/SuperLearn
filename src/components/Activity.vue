@@ -1,6 +1,6 @@
 <template>
     <div class="activity row" :style="'z-index: ' + layer + ';'">
-        <div class="activity-nav">
+        <div class="activity-nav navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
                     <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
