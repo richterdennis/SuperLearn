@@ -14,7 +14,7 @@
         </navitem>
 
         <navitem name="Wall of Fame">
-
+            <wall-of-fame-view></wall-of-fame-view>
         </navitem>
 
         <navitem name="Regeln">
@@ -40,6 +40,7 @@ import Activity from '../components/Activity.vue';
 import Navitem from '../components/Navitem.vue';
 
 import ModuleListView from './ModuleListView.vue';
+import WallOfFameView from './WallOfFameView.vue';
 
 export default {
     name: 'mainView',
@@ -53,7 +54,9 @@ export default {
     components: {
         Activity,
         Navitem,
-        ModuleListView
+        ModuleListView,
+        WallOfFameView
+
     },
     mounted() {
         this.navitems = this.$children[0].$children;
