@@ -40,7 +40,7 @@
                                         <input type="checkbox" id="rules_check" v-model="checked" />
                                         <label for="rules_check">Bitte lese unsere <a href="#">Regeln</a> bevor du einen Account erstellst.</label>
                                     </p>
-                                <input type="submit" class="btn-large green" :disabled="!checked">      
+                                <input type="submit" class="btn-large green" :disabled="!checked">
                                 <a href="#">Du hast schon einen Account?</a><br>
                             </form>
                         </div>
@@ -100,10 +100,10 @@ export default {
         addTriangleTo(target) {
             var dimensions = target.getClientRects()[0];
             var pattern = Trianglify({
-            width: dimensions.width, 
-            height: dimensions.height
-        });
-        target.style['background-image'] = 'url(' + pattern.png() + ')';
+                width: dimensions.width,
+                height: dimensions.height
+            });
+            target.style['background-image'] = 'url(' + pattern.png() + ')';
         }
     }
 }
@@ -123,11 +123,11 @@ input[type=submit] {
     margin: 10px 0 10px 0;
 }
 
-@media only screen 
+@media only screen
   and (min-device-width: 600px)
   {
     .card {
         margin-top: 5%;
-    }   
+    }
 }
 </style>

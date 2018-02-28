@@ -20,7 +20,7 @@
                                     <label for="si-password">Passwort</label>
                                     <input id="si-password" name="si-password" type="password" class="validate" required v-model="password">
                                 </div>
-                                <input type="submit" class="btn-large green">      
+                                <input type="submit" class="btn-large green">
                                 <a href="#">Passwort vergessen?</a><br>
                                 <a href="#">Noch kein Mitglied?</a>
                             </form>
@@ -82,11 +82,9 @@ input[type=submit] {
     margin-bottom: 10px;
 }
 
-@media only screen 
-  and (min-device-width: 600px)
-  {
+@media only screen and (min-device-width: 600px) {
     .card {
         margin-top: 25%;
-    }   
+    }
 }
 </style>
