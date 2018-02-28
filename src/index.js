@@ -1,8 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
 
+import mojs from 'mo-js';
+
 import * as Cache from "./classes/Cache";
 import Api from "./classes/Api";
+
+window.mojs = mojs;
 
 window.Cache = Cache;
 window.Api = Api;

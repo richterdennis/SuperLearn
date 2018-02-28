@@ -15,6 +15,15 @@
 export default {
     name: 'questionView',
     props: ['question'],
+    mounted() {
+        new mojs.Tween({
+            duration: this.question.duration * 1000,
+            onUpdate: (progress) => {
+                progress = 100 - progress * 100;
+                this.$refs.progress.style.width = progress + '%';
+            }
+        }).play();
+    },
     methods: {
         answer(givenAnswer) {
             this.$emit('answer', this.question, givenAnswer);
@@ -24,4 +33,7 @@ export default {
 </script>
 
 <style>
+#question-view .progress .determinate {
+    transition: inherit;
+}
 </style>
