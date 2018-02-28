@@ -108,7 +108,7 @@ input[type=submit] {
   and (min-device-width: 600px)
   {
     .card {
-        margin-top: 25%;
+        margin-top: 5%;
     }   
 }
 </style>
