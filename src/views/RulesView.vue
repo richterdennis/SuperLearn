@@ -1,5 +1,5 @@
 <template>
-    <div class="section container">
+    <div class="section">
             <div class="row">
                 <div class="col s12 m6 offset-m3">
                     <ul class="collapsible popout" data-collapsible="accordion">
@@ -22,6 +22,17 @@
 </template>
 
 <script>
+
+export default {
+    name: 'rulesview',
+   
+    mounted() {
+
+    },
+    methods: {
+       
+    }
+}
   $(document).ready(function(){
     $('.collapsible').collapsible();
   });

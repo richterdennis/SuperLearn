@@ -2,7 +2,7 @@
     <div class="activity row" :style="'z-index: ' + layer + ';'">
         <div class="activity-nav">
             <nav>
-                <div class="nav-wrapper">
+                <div class="nav-wrapper green">
                     <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
                     <span class="brand-logo hide-on-med-and-down"></span>
                     <span class="nav-title">{{title}}</span>
@@ -44,7 +44,7 @@ export default {
 }
 
 .activity .activity-nav .brand-logo {
-    background: url('/assets/logo_font.png') no-repeat center;
+    background: url('/assets/logo_font_white.png') no-repeat center;
     background-size: contain;
     height: 100%;
     width: 200px;
