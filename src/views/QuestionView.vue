@@ -1,6 +1,7 @@
 <template>
     <div id="question-view">
         <div class="voting">
+            <voting :score="question.score" :voted="question.voted" @vote="voteQuestion"></voting>
         </div>
         <div class="question">{{question.text}}</div>
         <div class="progress">
@@ -12,9 +13,16 @@
 </template>
 
 <script>
+import Voting from '../components/Voting.vue';
+
+import { VoteRouter } from '../classes/Router.js';
+
 export default {
     name: 'questionView',
     props: ['question'],
+    components: {
+        Voting
+    },
     mounted() {
         new mojs.Tween({
             duration: this.question.duration * 1000,
@@ -25,6 +33,14 @@ export default {
         }).play();
     },
     methods: {
+        voteQuestion(vote, score) {
+            this.question.voted = vote;
+            this.question.score = score;
+            VoteRouter.setQuestionVote(vote, this.question.id).catch(err => {
+                // TODO: Handle error
+                console.error(err);
+            });
+        },
         answer(givenAnswer) {
             this.$emit('answer', this.question, givenAnswer);
         }
