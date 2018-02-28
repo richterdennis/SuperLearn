@@ -1,5 +1,5 @@
 <template>
-    <div class="activity" :style="'z-index: ' + layer + ';'">
+    <div class="activity row" :style="'z-index: ' + layer + ';'">
         <div class="activity-nav">
             <nav>
                 <div class="nav-wrapper">
