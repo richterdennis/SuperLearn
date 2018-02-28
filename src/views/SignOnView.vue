@@ -69,6 +69,9 @@ export default {
     },
     mounted() {
         $('select').material_select();
+        $('select').on('change', (e) =>{
+            this.course = e.target.value;
+        });
 
         StudiesCourseRouter.getStudiesCourses().then(courses => {
             this.courses = courses;
@@ -81,7 +84,6 @@ export default {
     },
     methods: {
         doRegister() {
-            this.course = this.$refs["so-courses"].value;
             UserRouter.createUser({
                 email: this.email,
 		        nickname: this.nickname,
