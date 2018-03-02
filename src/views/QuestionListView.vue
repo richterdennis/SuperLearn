@@ -1,7 +1,13 @@
 <template>
     <ul id="question-list-view" class="collapsible" data-collapsible="accordion">
         <li>
-            <div class="collapsible-header">
+            <div class="questionlist-header">
+                <div class="row nomargin">
+                    <div class="input-field col s12">
+                        <input type="text" name="searchString" id="searchString" v-model="searchString">
+                        <label for="searchString">Suchbegriff</label>
+                    </div>
+                </div>
                 <div class="row nomargin">
                     <div class="input-field col s6">
                         <select name="so-sortby" id="so-sortby" v-model="sortby" ref="so-sortby">
@@ -20,7 +26,7 @@
                 </div>
             </div>
         </li>
-        <li v-for="question in questions" :key="question.id">
+        <li v-for="question in filteredQuestions"  :key="question.id">
             <div class="collapsible-header"><span class="truncate">{{question.text}}</span><span class="badge">{{ question.score }}</span></div>
             <div class="collapsible-body">
                 <div class="row nomargin">
@@ -61,7 +67,8 @@ export default {
                 { text: 'Absteigend', id: 1 }
             ],
             sortby: -1,
-            orderby: -1
+            orderby: -1,
+            searchString: ""
         }
     },
     mounted() {
@@ -75,20 +82,8 @@ export default {
             this.questions = questions;
         })
     },
-    methods: {
-        questionBooleanAnswer(question) {
-            return question.answers[0].correct == 1? "Die Aussage ist korrekt!" : "Die Aussage ist falsch!";
-        },
-        isCorrectAnswer(answer) {
-            return  answer.correct == 1 ? "z-depth-1 answer correct" : "z-depth-1 answer incorrect";
-        },
-        timeStampToDate(timestamp) {
-            return new Date(timestamp).toLocaleDateString();
-        },
-        sortingChanged(e) {
-            this.orderby = this.$refs["so-orderby"].value;
-            this.sortby = this.$refs["so-sortby"].value; 
-            
+    computed: {
+        filteredQuestions: function () {
             let compareFunction = this.sortByName;
             switch (this.sortby)
             {
@@ -104,11 +99,26 @@ export default {
                 default:
                     compareFunction = this.sortByDate;
             }
+            if (this.orderby == "1")
+                return this.questions.sort(compareFunction).filter(this.matchQuestionText).reverse();
 
-            this.questions.sort(compareFunction);
+            return this.questions.sort(compareFunction).filter(this.matchQuestionText);
 
-            if (this.orderby == 1)
-                this.questions.reverse();
+        }
+    },
+    methods: {
+        questionBooleanAnswer(question) {
+            return question.answers[0].correct == 1? "Die Aussage ist korrekt!" : "Die Aussage ist falsch!";
+        },
+        isCorrectAnswer(answer) {
+            return  answer.correct == 1 ? "z-depth-1 answer correct" : "z-depth-1 answer incorrect";
+        },
+        timeStampToDate(timestamp) {
+            return new Date(timestamp).toLocaleDateString();
+        },
+        sortingChanged(e) {
+            this.orderby = this.$refs["so-orderby"].value;
+            this.sortby = this.$refs["so-sortby"].value;
         },
         sortByName(a,b) {
             return a.text > b.text ? 1 : -1;
@@ -118,6 +128,9 @@ export default {
         },
         sortByDate(a,b) {
             return a.created > b.created ? 1 : -1;
+        },
+        matchQuestionText(question) {
+            return question.text.toLowerCase().match(this.searchString.toLowerCase());
         }
     }
 }
@@ -152,6 +165,10 @@ export default {
     }
     .collapsible-header .select-dropdown {
         margin-bottom: 0  !important;
+    }
+    .questionlist-header {
+        padding: 10px 10px 0px 10px;
+        border-bottom: 1px solid #ddd;
     }
 </style>
 
