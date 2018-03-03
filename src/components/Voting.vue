@@ -1,14 +1,13 @@
 <template>
-    <div class="voting">
-        <button class="voteup" @click="voteup">
-            <i class="material-icons" v-show="voted > 0">add_circle</i>
-            <i class="material-icons" v-show="voted <= 0">add_circle_outline</i>
-        </button>
-        <div class="score" :class="{negative: score < 0}">{{score}}</div>
-        <button class="votedown" @click="votedown">
-            <i class="material-icons" v-show="voted < 0">remove_circle</i>
-            <i class="material-icons" v-show="voted >= 0">remove_circle_outline</i>
-        </button>
+    <div class="row voting">
+        <div class="col s5">
+            <a class="voteup btn-floating right grey waves-light" @click="voteup"><i class="material-icons">add</i></a>
+        </div>
+        <div id="test" class="col s2 score center" :class="{negative: score < 0}"><h4 class="light">{{score}}</h4></div>
+
+        <div class="col s5"><a class="votedown btn-floating grey waves-light" @click="votedown">
+            <i class="material-icons">remove</i></a>
+        </div>
     </div>
 </template>
 
@@ -31,4 +30,20 @@ export default {
         }
     }
 }
+/* Does not work :( Should Highlight VoteScore Div */
+$('.test').hover(
+    function(){$(this).toggleClass('z-depth-3');
+})
+
 </script>
+
+<style>
+.voting {
+    padding: 10px 0 0 0;
+    margin: 0;
+}
+h4 {
+    margin: 0;
+    padding: 0;
+}
+</style>
