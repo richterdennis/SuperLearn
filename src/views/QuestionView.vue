@@ -3,9 +3,11 @@
         <div class="voting">
             <voting :score="question.score" :voted="question.voted" @vote="voteQuestion"></voting>
         </div>
-        <div class="question">{{question.text}}</div>
-        <div class="progress">
-            <div class="determinate" style="width: 100%" ref="progress"></div>
+        <div class="row question">
+            <p class="flow-text center">{{question.text}}</p>
+            <div class="container progress">
+                <div class="determinate" style="width: 100%" ref="progress"></div>
+            </div>
         </div>
         <div class="answer-type-view-holder" v-if="answerView">
             <component :is="answerView" :answers="question.answers" @answer="answer"></component>
