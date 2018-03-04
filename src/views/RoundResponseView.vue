@@ -1,11 +1,13 @@
 <template>
     <div id="round-response-view">
-        <question-list-item
-            v-for="(n, i) in answers.length"
-            :key="i"
-            :question="round.questions[i]"
-            :answer="answers[i]"
-        ></question-list-item>
+          <ul class="collapsible" data-collapsible="accordion">
+            <question-list-item
+                v-for="(n, i) in answers.length"
+                :key="i"
+                :question="round.questions[i]"
+                :answer="answers[i]"
+            ></question-list-item>
+        </ul>
     </div>
 </template>
 
@@ -17,12 +19,17 @@ export default {
     props: ['round', 'answers'],
     components: {
         QuestionListItem
+    },    
+    mounted() {
+        $(document).ready(function(){
+        $('.collapsible').collapsible();
+        });
     }
 }
 </script>
 
 <style>
-#round-response-view .question-list-item {
-    margin-bottom: 15px;
+.collapsible-body {
+    background-color: white;
 }
 </style>
