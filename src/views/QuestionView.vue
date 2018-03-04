@@ -6,7 +6,7 @@
         <div class="row question">
             <p class="flow-text center">{{question.text}}</p>
             <div class="container progress">
-                <div class="determinate" style="width: 100%" ref="progress"></div>
+                <div class="determinate" :style="'width: ' + progress + '%'"></div>
             </div>
         </div>
         <div class="answer-type-view-holder" v-if="answerView">
@@ -42,7 +42,8 @@ export default {
     },
     data() {
         return {
-            progress: null
+            progress: 100,
+            progressTween: null
         };
     },
     computed: {
@@ -51,11 +52,10 @@ export default {
         }
     },
     mounted() {
-        this.progress = new mojs.Tween({
+        this.progressTween = new mojs.Tween({
             duration: this.question.duration * 1000,
             onUpdate: (progress) => {
-                progress = 100 - progress * 100;
-                this.$refs.progress.style.width = progress + '%';
+                this.progress = 100 - progress * 100;
             }
         }).play();
     },
@@ -69,7 +69,7 @@ export default {
             });
         },
         answer(givenAnswer) {
-            this.progress.stop();
+            this.progressTween.stop();
             this.$emit('answer', this.question, givenAnswer);
         }
     }
