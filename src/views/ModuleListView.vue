@@ -5,7 +5,7 @@
             <i class="circle">{{item.short}}</i>
             <span class="title">{{item.long}}</span>
             <span class="question-counter right">{{item.questions}}</span>
-            <div class="progress green accent-4">
+            <div class="progress">
                 <div class="determinate" :style="'width: ' + item.progress + '%'"></div>
             </div>
         </a>
