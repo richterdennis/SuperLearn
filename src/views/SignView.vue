@@ -27,7 +27,7 @@
         </div>
     </div>
 
-        
+
 </template>
 
 <script>
@@ -51,6 +51,9 @@ export default {
         Cache.remove(App.CACHE.USER_ME);
         Cache.remove(App.CACHE.MY_QUESTIONS);
         Cache.remove(App.CACHE.REPORTS);
+
+        $('ul.tabs').tabs();
+        $('#tabs-swipe-demo').tabs({ 'swipeable': true });
     },
     methods: {
         onLoggedInStateChange() {
@@ -58,11 +61,6 @@ export default {
         }
     }
 }
- $(document).ready(function(){
-    $('ul.tabs').tabs();
-    $('#tabs-swipe-demo').tabs({ 'swipeable': true });
-  });
-     $(".tabs>.indicator").css("background-color", '#FFF');
 </script>
 
 <style>
@@ -75,7 +73,7 @@ export default {
     background-color: #f4f4f4;
     overflow: hidden;
 }
-img.responsive-img{
+img.responsive-img {
     width: 100%;
 }
 input[type=submit] {
@@ -83,14 +81,15 @@ input[type=submit] {
     margin: 10px 0 10px 0;
 }
 
+.tabs > .indicator {
+    background: #4CAF50;
+}
+
  /* TODO: anpassung mobile (import von Dennis) */
-@media only screen
-  and (min-device-width: 600px)
-  {
+@media only screen and (min-width: 600px) {
     .card {
         margin-top: 5%;
     }
 }
 
 </style>
-
