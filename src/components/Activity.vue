@@ -2,9 +2,9 @@
     <div class="activity row" :style="'z-index: ' + layer + ';'">
         <div class="activity-nav navbar-fixed">
             <nav>
-                <div class="nav-wrapper">
+                <div class="nav-wrapper green accent-4">
                     <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
-                    <span class="brand-logo hide-on-med-and-down"></span>
+                    <span class="brand-logo center hide-on-med-and-down"></span>
                     <span class="nav-title">{{title}}</span>
                     <slot name="nav"></slot>
                 </div>
@@ -36,19 +36,21 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: white;
+    background-color: #f1f1f1;
     margin: 0 !important;
 }
+
 
 .activity .activity-nav .button-collapse {
     display: block !important;
 }
 
 .activity .activity-nav .brand-logo {
-    background: url('/assets/logo_font.png') no-repeat center;
+    background: url('/assets/logo_icon.png') no-repeat center;
     background-size: contain;
-    height: 100%;
+    height: 150%;
     width: 200px;
+    transform: translateY(20px) translateX(-50%);
 }
 
 .activity .activity-nav .nav-title {
@@ -65,13 +67,10 @@ export default {
 
 @media only screen and (min-width: 993px) {
 
-    .activity .activity-nav .nav-title {
-        margin-left: 200px;
-    }
-
     .activity .activity-content {
         padding-top: 2rem;
         padding-bottom: 2rem;
+        margin-top: 60px;
     }
 
     .activity .activity-content > * {
