@@ -26,7 +26,7 @@
                 </div>
             </div>
         </li>
-        <li v-for="question in filteredQuestions"  :key="question.id">
+        <li v-for="question in filteredQuestions" :key="question.id">
             <div class="collapsible-header"><span class="truncate">{{question.text}}</span><span class="badge">{{ question.score }}</span></div>
             <div class="collapsible-body">
                 <div class="row nomargin">
@@ -100,9 +100,9 @@ export default {
                     compareFunction = this.sortByDate;
             }
             if (this.orderby == "1")
-                return this.questions.sort(compareFunction).filter(this.matchQuestionText).reverse();
+                return this.questions.filter(this.matchQuestionText).sort(compareFunction).reverse();
 
-            return this.questions.sort(compareFunction).filter(this.matchQuestionText);
+            return this.questions.filter(this.matchQuestionText).sort(compareFunction);
 
         }
     },
