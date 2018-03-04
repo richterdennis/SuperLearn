@@ -62,10 +62,10 @@ export default {
     margin-top: 30px;
 }
 .answer_right {
-    animation: aright 2s infinite;
+    animation: aright 2s;
 }
 .answer_wrong {
-    animation: awrong 2s infinite;
+    animation: awrong 2s;
 }
 #answer-response-view a {
     width: 100%;
