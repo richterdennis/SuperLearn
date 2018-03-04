@@ -5,7 +5,7 @@
         </div>
         <div class="row question">
             <p class="flow-text center">{{question.text}}</p>
-            <div class="container progress">
+            <div class="row container progress">
                 <div class="determinate" :style="'width: ' + progress + '%'"></div>
             </div>
         </div>
@@ -79,6 +79,7 @@ export default {
 <style>
 #question-view {
     padding: 20px;
+    background-color: white;
 }
 #question-view .progress .determinate {
     transition: inherit;
