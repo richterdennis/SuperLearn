@@ -77,6 +77,9 @@ export default {
 </script>
 
 <style>
+#question-view {
+    padding: 20px;
+}
 #question-view .progress .determinate {
     transition: inherit;
 }

@@ -1,15 +1,19 @@
 <template>
     <div id="answer-boolean-view" class="row">
         <div class="col s6">
-            <a class="waves-effect waves-light btn-large green waves-light" @click="answer(true)"><i class="material-icons right">thumb_up</i>Ja / Richtig</a>
+            <a class="waves-effect waves-light btn-large green waves-light" @click="answer(true)">
+                <i class="material-icons right">thumb_up</i> Ja / Richtig
+            </a>
         </div>
-        
+
         <div class="col s6">
-            <a class="waves-effect waves-light btn-large red waves-light" @click="answer(false)"><i class="material-icons left">thumb_down</i>Nein / Falsch</a>
+            <a class="waves-effect waves-light btn-large red waves-light" @click="answer(false)">
+                <i class="material-icons left">thumb_down</i> Nein / Falsch
+            </a>
         </div>
     </div>
     <!-- TODO: Buttons on mobile -->
- </template>       
+ </template>
 
 <script>
 export default {
@@ -22,12 +26,8 @@ export default {
                 text: givenAnswer ? 'Ja / Richtig' : 'Nein / Falsch'
             });
         }
-    }   
+    }
 }
-/* Does not work :( */
-$('.btn-large').hover(
-    function(){$(this).toggleClass('z-depth-5');
-})
 </script>
 
 <style>
@@ -36,5 +36,8 @@ $('.btn-large').hover(
 }
 .btn-large:hover {
     transform: scale(1.05);
+
+    -webkit-box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
 }
 </style>
