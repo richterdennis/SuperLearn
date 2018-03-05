@@ -18,13 +18,14 @@
                 <p class="flow-text ">Deine Antwort ist {{answer.correct ? 'richtig' : 'falsch'}}</p>
             </blockquote> -->
             </div>
-        <div class="row">
-        <div class="your-answer col s12">
-            <p class="center">Deine Antwort: {{answer.text}}</p>
+        <div class="row container">
+        <div class="your-answer col s6">
+            <blockquote class="" v-bind:class="{'correct_color':answer.correct}">Deine Antwort: {{answer.text}}</blockquote>
         </div>
+        
+        <div class="correct-answer col s6" v-if="!answer.correct">
+            <blockquote class="correct_color">Richtige Antwort: {{correctAnswer}}</blockquote>
         </div>
-        <div class="correct-answer col s12" v-if="!answer.correct">
-            <p class="center">Richtige Antwort: {{correctAnswer}}</p>
         </div>
         <a class="waves-effect waves-light btn-large green accent-4" @click="next"><i class="material-icons right">arrow_forward</i>nächste Frage</a>
         </div>
@@ -71,7 +72,10 @@ export default {
     width: 100%;
     margin-top: 10px;
 }
-
+.correct_color{
+  margin: 20px 0;
+  border-left: 5px solid #64dd17; 
+}
 
 @keyframes aright {
   0%, 100% {
