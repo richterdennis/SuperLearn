@@ -12,7 +12,27 @@
         <div class="answer-type-view-holder" v-if="answerView">
             <component :is="answerView" :answers="question.answers" @answer="answer"></component>
         </div>
-        <div class="star-counter">StarCounter: {{question.starCounter}}</div>
+
+        <div class="star-counter" v-if="question.starCounter == '1'">
+            <i class="material-icons green-text">check_box</i>
+            <i class="material-icons">check_box_outline_blank</i>
+            <i class="material-icons">check_box_outline_blank</i>
+        </div>
+        <div class="star-counter" v-if="question.starCounter == '2'">
+            <i class="material-icons green-text">check_box</i>
+            <i class="material-icons green-text">check_box</i>
+            <i class="material-icons">check_box_outline_blank</i>
+        </div>
+        <div class="star-counter" v-if="question.starCounter == '3'">
+            <i class="material-icons green-text">check_box</i>
+            <i class="material-icons green-text">check_box</i>
+            <i class="material-icons green-text">check_box</i>
+        </div>
+            <div class="star-counter" v-if="question.starCounter == '0'">
+            <i class="material-icons">check_box_outline_blank</i>
+            <i class="material-icons">check_box_outline_blank</i>
+            <i class="material-icons">check_box_outline_blank</i>
+        </div>
     </div>
 </template>
 
