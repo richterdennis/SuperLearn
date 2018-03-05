@@ -1,6 +1,6 @@
 <template>
     <activity id="new-question-view" :title="title" icon="close" layer="10" @onIconClicked="close">
-        <div class="row">
+        <div class="row" id="new-question-form">
             <div class="input-field col s12">
                 <select name="select-course" id="select-course">
                     <option value="-1" disabled selected>Bitte wähle einen Kurs...</option>
@@ -43,3 +43,9 @@ export default {
     }
 }
 </script>
+
+<style>
+    #new-question-form {
+        padding: 20px 8px
+    }
+</style>
