@@ -30,6 +30,11 @@ import Activity from '../components/Activity.vue';
 
 export default {
     name: 'newQuestionView',
+    data() {
+        return {
+            title: 'Neue Frage erstellen'
+        }
+    },
     components: {
         Activity
     },
