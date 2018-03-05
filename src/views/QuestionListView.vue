@@ -49,7 +49,7 @@
             </li>
         </ul>
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large red waves-effect waves-light">
+            <a class="btn-floating btn-large red waves-effect waves-light" @click.prevent="openNewQuestionView()">
                 <i class="large material-icons">add</i>
             </a>
         </div>
@@ -58,6 +58,7 @@
 
 <script>
 import { QuestionRouter } from '../classes/Router.js';
+import NewQuestionView from './NewQuestionView.vue';
 
 export default {
     name: 'questionListView',
@@ -138,6 +139,9 @@ export default {
         },
         matchQuestionText(question) {
             return question.text.toLowerCase().match(this.searchString.toLowerCase());
+        },
+        openNewQuestionView() {
+            App.startView(NewQuestionView);
         }
     }
 }
