@@ -7,6 +7,10 @@
                 :question="round.questions[i]"
                 :answer="answers[i]"
             ></question-list-item>
+            <!-- TODO Ergebniszeile mit Info: 5 von 10 (50%) der Fragen Korrekt Beantwortet
+            <li>
+                <div class="collapsible-header"><i class="material-icons">show_chart</i> </div>
+            </li> -->
         </ul>
     </div>
 </template>
