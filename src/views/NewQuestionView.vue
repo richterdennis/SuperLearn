@@ -23,7 +23,7 @@
                 <h5 v-if="selectedType == -1">Bitte wähle einen Fragetypen</h5>
                 <new-question-boolean-view v-else-if="selectedType == '1'"></new-question-boolean-view>
                 <new-question-four-view v-else-if="selectedType == '2'"></new-question-four-view>
-                <new-question-exact-view v-else-if="selectedType == '3'"></new-question-exact-view>
+                <new-question-exact-view v-else-if="selectedType == '3'"></new-question-exact-view> <!-- Vue Component https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
             </div>
             <button type="submit" class="col s12 waves-effect waves-light btn" disabled>FRAGE ABSENDEN</button>
         </div>

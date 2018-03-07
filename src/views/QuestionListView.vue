@@ -147,7 +147,7 @@ export default {
 }
 </script>
 <style>
-    .answer {
+    .question-list-view .answer {
         border-style: solid;
         border-width: 0 0 0 6px;
         border-radius: 2px;
@@ -155,29 +155,29 @@ export default {
         padding-left: 12px;
         margin: 2px 0 6px 0;
     }
-    .correct {
+    .question-list-view .correct {
         border-color: green;
     }
-    .incorrect {
+    .question-list-view .incorrect {
         border-color: red;
     }
 
-    .smalltext {
+    .question-list-view .smalltext {
         font-size: .7em;
         color: darkslategray;
         margin-bottom: 0;
     }
-    .smalltext + p {
+    .question-list-view .smalltext + p {
         margin-top: 0;
     }
-    .row.nomargin {
+    .question-list-view .row.nomargin {
         margin-bottom: 0;
         width:100%;
     }
-    .collapsible-header .select-dropdown {
+    .question-list-view .collapsible-header .select-dropdown {
         margin-bottom: 0  !important;
     }
-    .questionlist-header {
+    .question-list-view .questionlist-header {
         padding: 10px 10px 0px 10px;
         border-bottom: 1px solid #ddd;
     }
