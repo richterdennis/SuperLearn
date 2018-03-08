@@ -9,6 +9,10 @@
             <module-list-view @titleChanged="changeTitle"></module-list-view>
         </navitem>
 
+        <navitem name="Mein Profil">
+            <user-profile-view></user-profile-view>
+        </navitem>
+
         <navitem name="Meine Fragen">
 
         </navitem>
@@ -40,6 +44,7 @@ import Activity from '../components/Activity.vue';
 import Navitem from '../components/Navitem.vue';
 
 import ModuleListView from './ModuleListView.vue';
+import UserProfileView from './UserProfileView.vue';
 
 export default {
     name: 'mainView',
@@ -53,7 +58,8 @@ export default {
     components: {
         Activity,
         Navitem,
-        ModuleListView
+        ModuleListView,
+        UserProfileView
     },
     mounted() {
         this.navitems = this.$children[0].$children;
