@@ -1,16 +1,20 @@
 <template>
     <div id="user-profile-view" class="card-panel text-grey row">
         <div id="header" class="col s12">
-            {{user.nickname}}
+            Profil von {{user.nickname}}
             <hr/>
         </div>
+
         <div id="content" class="col s12">
-            <img class="bild circle" :src="url"/>
+            <div><img class="bild circle" :src="url"/></div>
             <div class="userContent">
-                E-mail: {{user.email}}<br>
-                Punktestand: {{user.score}}
-            </div>    
+                <b>{{user.nickname}}</b><br/>
+                {{user.email}}<p/>     
+                <b>Punktestand:</b><br/>
+                {{user.score}}  
+            </div>     
         </div>
+
         <div id="footer" class="col s12">
             <hr/>
             {{userRole}}
@@ -59,6 +63,25 @@ export default {
 </script>
 
 <style>
+#header, #footer{
+    font-size: 80%;
+    color: gray;
+}
+#content{
+    margin: 2% 0;
+    text-align: center;
+}
+#content .userContent{
+    font-size: calc(0.75em + 1vmin);
+    margin-top: 2%;
+}
+#content .bild{
+    height: 30%;
+    width: 30%;
+}
+#footer #userCreated{
+    float: right;
+}
 hr{
     display: block;
     height: 1px;
@@ -66,20 +89,6 @@ hr{
     border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;
-}
-.bild{
-        margin-right: 4%;
-        position: relative;
-        float: left;
-        height: 150px;
-        width: 150px;
-    }
-.userContent{
-    position: relative;
-    top: 50px;
-}
-#userCreated{
-        float: right;
 }
 </style>
 
