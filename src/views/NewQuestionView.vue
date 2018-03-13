@@ -1,6 +1,6 @@
 <template>
     <activity id="new-question-view" :title="title" icon="close" layer="10" @onIconClicked="close">
-        <div class="row" id="new-question-form">
+        <form class="row" id="new-question-form" @submit.prevent="submitQuestion">
             <div class="input-field col s12">
                 <select name="select-module" id="select-module" ref="select-module">
                     <option value="-1" disabled selected>Bitte wähle ein Modul...</option>
@@ -20,13 +20,13 @@
                 <label for="input-questionText">Fragetext</label>
             </div>
             <div class="col s12">
-                <h5 v-if="selectedType == -1">Bitte wähle einen Fragetypen</h5>
-                <new-question-boolean-view v-else-if="selectedType == '1'"></new-question-boolean-view>
-                <new-question-four-view v-else-if="selectedType == '2'"></new-question-four-view>
-                <new-question-exact-view v-else-if="selectedType == '3'"></new-question-exact-view> <!-- Vue Component https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
+                <h5 v-if="!questionView">Bitte wähle einen Fragetypen</h5>
+                <component v-bind:is="questionView" ref="current-view">
+                <!-- component changes when vm.currentView changes! -->
+                </component>
             </div>
-            <button type="submit" class="col s12 waves-effect waves-light btn" disabled>FRAGE ABSENDEN</button>
-        </div>
+            <button type="submit" class="col s12 waves-effect waves-light btn" >FRAGE ABSENDEN</button>
+        </form>
     </activity>
 </template>
 
@@ -44,12 +44,13 @@ export default {
             title: 'Neue Frage erstellen',
             modules: [],
             questionTypes: [
-                { type: 1, name: "Richtig / Falsch" },
-                { type: 2, name: "Quiz" },
-                { type: 3, name: "Exakte Antwort" }
+                { type: 1, name: "Richtig / Falsch", view: NewQuestionBooleanView },
+                { type: 2, name: "Quiz", view: NewQuestionFourView },
+                { type: 3, name: "Exakte Antwort", view: NewQuestionExactView }
             ],
             selectedType: -1,
-            selectedModule: -1
+            selectedModule: -1,
+            questionView: null
         }
     },
     components: {
@@ -68,12 +69,16 @@ export default {
     methods: {
         close() {
             this.$emit('close');
+        },
+        submitQuestion() {
+            //console.log(this.questionView.getAnswers());
+            console.log(this.$refs["current-view"].getAnswers());
         }
     },
     mounted() {
         $('select').material_select();
         $('select').on('change', (e) => {
-            this.selectedType = this.$refs["select-question-type"].value;
+            this.questionView = this.questionTypes[parseInt(this.$refs["select-question-type"].value) - 1].view;
             this.selectedModule = this.$refs["select-module"].value;
         });
 
