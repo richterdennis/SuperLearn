@@ -16,16 +16,20 @@
                 <label for="select-question-type">Fragetyp</label>
             </div>
             <div class="input-field col s12">
-                <input type="text" name="input-questionText" id="input-questionText" required>
+                <input type="text" name="input-questionText" id="input-questionText" v-model="questionText" required>
                 <label for="input-questionText">Fragetext</label>
             </div>
-            <div class="col s12">
+            <div class="input-field col s12">
+                <textarea id="input-solutionText" class="materialize-textarea" v-model="solutionText"></textarea>
+                <label for="input-solutionText">Lösung</label>
+            </div>
+            <div class="col s12 child-component">
                 <h5 v-if="!questionView">Bitte wähle einen Fragetypen</h5>
                 <component v-bind:is="questionView" ref="current-view">
                 <!-- component changes when vm.currentView changes! -->
                 </component>
             </div>
-            <button type="submit" class="col s12 waves-effect waves-light btn" >FRAGE ABSENDEN</button>
+            <button type="submit" class="col s12 waves-effect waves-light btn" :disabled="submitInProgess">FRAGE ABSENDEN</button>
         </form>
     </activity>
 </template>
@@ -33,6 +37,7 @@
 <script>
 import Activity from '../components/Activity.vue';
 import { ModuleRouter } from '../classes/Router.js'
+import { QuestionRouter } from '../classes/Router.js'
 import NewQuestionBooleanView from './NewQuestionBooleanView.vue'
 import NewQuestionFourView from './NewQuestionFourView.vue'
 import NewQuestionExactView from './NewQuestionExactView.vue'
@@ -50,7 +55,10 @@ export default {
             ],
             selectedType: -1,
             selectedModule: -1,
-            questionView: null
+            questionView: null,
+            questionText: "",
+            solutionText: "",
+            submitInProgess: false
         }
     },
     components: {
@@ -71,15 +79,35 @@ export default {
             this.$emit('close');
         },
         submitQuestion() {
-            //console.log(this.questionView.getAnswers());
-            console.log(this.$refs["current-view"].getAnswers());
+            this.submitInProgess = true;
+            let question = {
+                text: this.questionText,
+                image: "",
+                questionType: this.selectedType,
+                moduleId: this.selectedModule,
+                tags: [1],
+                answers: this.$refs["current-view"].getAnswers(),
+                solution: {
+                    text: this.solutionText,
+                    image: ""
+                }
+            }
+
+            QuestionRouter.postNewQuestion(question).then((response) => {
+                Cache.remove(App.CACHE.MY_QUESTIONS);
+                this.$emit('close');
+            }).catch(e => {
+                this.submitInProgess = false;
+                throw 'Something went wrong!';
+            });
         }
     },
     mounted() {
         $('select').material_select();
         $('select').on('change', (e) => {
-            this.questionView = this.questionTypes[parseInt(this.$refs["select-question-type"].value) - 1].view;
-            this.selectedModule = this.$refs["select-module"].value;
+            this.selectedType = parseInt(this.$refs["select-question-type"].value);
+            this.questionView = this.questionTypes[this.selectedType - 1].view;
+            this.selectedModule = parseInt(this.$refs["select-module"].value);
         });
 
         ModuleRouter.getModules().then(modules => {
@@ -93,5 +121,8 @@ export default {
 <style>
     #new-question-form {
         padding: 20px 8px 8px 8px
+    }
+    #new-question-form .col.child-component {
+        padding: 0;
     }
 </style>
