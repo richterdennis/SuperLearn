@@ -63,7 +63,7 @@ export default {
         Navitem,
         QuestionListView,
         RulesView,
-        InfoView
+        InfoView,
         ModuleListView,
         UserProfileView
     },
