@@ -23,10 +23,10 @@ export default {
     props: ['round', 'answers'],
     components: {
         QuestionListItem
-    },    
+    },
     mounted() {
         $(document).ready(function(){
-        $('.collapsible').collapsible();
+            $('.collapsible').collapsible();
         });
     }
 }

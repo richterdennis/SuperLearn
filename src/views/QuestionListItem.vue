@@ -40,17 +40,14 @@
 <script>
 export default {
     name: 'questionListItem',
-    props: ['question', 'answer'],
-    methods() {
-
-    }
+    props: ['question', 'answer']
 }
 </script>
 
 <style>
 .correct_color{
   margin: 10px 0;
-  border-left: 5px solid #64dd17; 
+  border-left: 5px solid #64dd17;
 }
 blockquote {
     margin: 10px 0;
