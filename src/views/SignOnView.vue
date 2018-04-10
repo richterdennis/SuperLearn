@@ -26,8 +26,8 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <select id="so-courses" name="so-courses" class="validate" required v-model="course">
-                    <option disabled value="">-- bitte wählen --</option>
+                <select id="so-courses" name="so-courses" class="validate" required v-model="course" ref="so-courses">
+                    <option disabled value="-1">-- bitte wählen --</option>
                     <option v-for="course in courses" :key="course.id" :value="course.id">{{course.text}}</option>
                 </select>
                 <label for="so-courses">Studiengang</label>
@@ -50,12 +50,15 @@ export default {
             nickname: '',
             password: '',
             password2: '',
-            course: '',
+            course: -1,
             courses: []
         }
     },
     mounted() {
         $('select').material_select();
+        $('select').on('change', (e) =>{
+            this.course = e.target.value;
+        });
 
         StudiesCourseRouter.getStudiesCourses().then(courses => {
             this.courses = courses;

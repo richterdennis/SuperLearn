@@ -38,11 +38,11 @@ export default {
                 Cache.save();
                 this.$emit('loggedInStateChange');
             }).catch(e => {
-                if(e.status = 404) {
+                if(e.status == 404) {
                     console.log('User does not exists')
                     return;
                 }
-                else if(e.status = 405) {
+                else if(e.status == 405) {
                     console.log('Password is wrong')
                     return;
                 }
