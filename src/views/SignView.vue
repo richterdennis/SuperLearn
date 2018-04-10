@@ -16,7 +16,7 @@
                                 <li class="tab col s6"><a class="green-text" href="#sign-on ">REGISTRIEREN</a></li>
                             </ul>
                             </div>
-                            <div id="sign-in" class="col s12"><sign-in-view @loggedOnStateChange="onLoggedOnStateChange"></sign-in-view></div>
+                            <div id="sign-in" class="col s12"><sign-in-view @loggedInStateChange="onLoggedInStateChange"></sign-in-view></div>
                             <div id="sign-on" class="col s12"><sign-on-view @loggedInStateChange="onLoggedInStateChange"></sign-on-view></div>
                         </div>
 

@@ -63,7 +63,7 @@ export default {
             throw 'Something went wrong!';
         });
 
-       addTriangleTo(document.getElementById('sign-on-view'));
+       // this.addTriangleTo(document.getElementById('sign-on-view'));
     },
     methods: {
         doRegister() {
