@@ -4,7 +4,7 @@
             <a href="#" class="avatar"><i class="material-icons">person</i></a>
             <div class="score">1337</div>
         </template>
-        
+
         <navitem name="Home" :selected="true">
             <module-list-view @titleChanged="changeTitle"></module-list-view>
         </navitem>
@@ -20,11 +20,11 @@
         <navitem name="Regeln">
             <rules-view @titleChanged="changeTitle"></rules-view>
         </navitem>
-        
+
         <navitem name="Info">
             <info-view @titleChanged="changeTitle"></info-view>
         </navitem>
-        
+
         <navitem name="Logout" @click="doLogout"></navitem>
     </activity>
 
@@ -57,7 +57,7 @@ export default {
         Activity,
         Navitem,
         ModuleListView,
-        QuestionListView
+        QuestionListView,
         RulesView,
         InfoView
     },

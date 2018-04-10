@@ -2,14 +2,14 @@
     <activity id="new-question-view" :title="title" icon="close" layer="10" @onIconClicked="close">
         <form class="row" id="new-question-form" @submit.prevent="submitQuestion">
             <div class="input-field col s12">
-                <select name="select-module" id="select-module" ref="select-module">
+                <select name="select-module" id="select-module" v-model="selectedModule" ref="select-module">
                     <option value="-1" disabled selected>Bitte wähle ein Modul...</option>
                     <option v-for="mod in sortedModules" :key="mod.id" :value="mod.id">{{ mod.long }}</option>
                 </select>
                 <label for="select-module">Modul</label>
             </div>
             <div class="input-field col s12">
-                <select name="select-question-type" id="select-question-type" ref="select-question-type">
+                <select name="select-question-type" id="select-question-type" v-model="selectedType" ref="select-question-type">
                     <option value="-1" disabled selected>...und einen Fragetypen</option>
                     <option v-for="questionType in questionTypes" :key="questionType.type" :value="questionType.type">{{ questionType.name }}</option>
                 </select>
@@ -55,7 +55,6 @@ export default {
             ],
             selectedType: -1,
             selectedModule: -1,
-            questionView: null,
             questionText: "",
             solutionText: "",
             submitInProgess: false
@@ -72,6 +71,13 @@ export default {
             return this.modules.sort((a,b) => {
                 return (a.long > b.long) ? 1 : -1;
             });
+        },
+        questionView: function() {
+            if(this.selectedType < 0) {
+                return null;
+            }
+
+            return this.questionTypes[this.selectedType - 1].view;
         }
     },
     methods: {
@@ -87,10 +93,10 @@ export default {
                 moduleId: this.selectedModule,
                 tags: [1],
                 answers: this.$refs["current-view"].getAnswers(),
-                solution: {
+                solution: this.solutionText ? {
                     text: this.solutionText,
                     image: ""
-                }
+                } : null
             }
 
             QuestionRouter.postNewQuestion(question).then((response) => {
@@ -104,10 +110,11 @@ export default {
     },
     mounted() {
         $('select').material_select();
-        $('select').on('change', (e) => {
-            this.selectedType = parseInt(this.$refs["select-question-type"].value);
-            this.questionView = this.questionTypes[this.selectedType - 1].view;
-            this.selectedModule = parseInt(this.$refs["select-module"].value);
+        $(this.$refs["select-module"]).on('change', (e) => {
+            this.selectedModule = parseInt(e.target.value);
+        });
+        $(this.$refs["select-question-type"]).on('change', (e) => {
+            this.selectedType = parseInt(e.target.value);
         });
 
         ModuleRouter.getModules().then(modules => {
