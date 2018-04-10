@@ -1,39 +1,40 @@
 <template>
-    <div class="section">
-            <div class="row">
-                <div class="col s12 m6 offset-m3">
-                    <ul class="collapsible popout" data-collapsible="accordion">
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons green-text">filter_1</i>Wahl eines Nicknames</div>
-                            <div class="collapsible-body"><span>Keine Anstößigen oder beleidigenden Nicknames wählen</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons green-text">filter_2</i>Korrekte Fragen</div>
-                            <div class="collapsible-body"><span>Vor dem Hochladen muss die Korrektheit einer Frage geprüft werden</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons green-text">filter_3</i>Melden falscher Fragen</div>
-                            <div class="collapsible-body"><span>Anstößige, falsche oder troll Fragen <span class="green-text">müssen</span> gemeldet werden </span></div>
-                        </li>
-                    </ul>
-                </div>
-        </div>
-    </div>
+	<div id="rules-view">
+		<ul id="rule-list" class="collection">
+  			<li v-for="rule in rules" :key="rule.title" class="collection-item">
+				  <img :src="rule.image" id="image"/>
+				  {{ rule.title }}<br>
+				  {{ rule.text }}
+				  </li>
+		</ul>
+	</div>
+
 </template>
 
 <script>
-
-export default {
-    name: 'rulesview',
-   
-    mounted() {
-
-    },
-    methods: {
-       
-    }
+export default{
+	name: 'rule-list',
+	data() {
+		return{ 
+			rules: [
+			  {title: '1. Regel' , text: 'Keine Anstößigen oder beleidigenden Usernamen wählen', 
+			  image: '../assets/rules_1.png'},
+      		{title: '2. Regel' , text: 'Vor dem Hochladen muss die Korrektheit einer Frage geprüft werden', 
+			  image: '../assets/rules_2.png'},
+			{title: '3. Regel' , text: 'Anstößige, falsche oder troll Fragen müssen gemeldet werden', 
+			  image: '../assets/rules_3.png'},
+    		]
+		}
+  	}
 }
-  $(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
+
 </script>
+
+<style>
+	#image{
+		float: left;
+		height: 45px;
+		width: auto;
+		margin-right: 2%;
+	}
+</style>
