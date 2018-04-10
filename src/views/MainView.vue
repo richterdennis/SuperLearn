@@ -4,7 +4,7 @@
             <a href="#" class="avatar"><i class="material-icons">person</i></a>
             <div class="score">1337</div>
         </template>
-        
+
         <navitem name="Home" :selected="true">
             <module-list-view @titleChanged="changeTitle"></module-list-view>
         </navitem>
@@ -14,7 +14,7 @@
         </navitem>
 
         <navitem name="Meine Fragen">
-
+            <question-list-view></question-list-view>
         </navitem>
 
         <navitem name="Wall of Fame">
@@ -22,13 +22,13 @@
         </navitem>
 
         <navitem name="Regeln">
-
+            <rules-view @titleChanged="changeTitle"></rules-view>
         </navitem>
-        
+
         <navitem name="Info">
-
+            <info-view @titleChanged="changeTitle"></info-view>
         </navitem>
-        
+
         <navitem name="Logout" @click="doLogout"></navitem>
     </activity>
 
@@ -44,6 +44,9 @@ import Activity from '../components/Activity.vue';
 import Navitem from '../components/Navitem.vue';
 
 import ModuleListView from './ModuleListView.vue';
+import QuestionListView from './QuestionListView.vue';
+import RulesView from './RulesView.vue';
+import InfoView from './InfoView.vue';
 import UserProfileView from './UserProfileView.vue';
 
 export default {
@@ -58,6 +61,9 @@ export default {
     components: {
         Activity,
         Navitem,
+        QuestionListView,
+        RulesView,
+        InfoView
         ModuleListView,
         UserProfileView
     },
