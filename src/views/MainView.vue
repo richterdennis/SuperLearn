@@ -1,5 +1,10 @@
 <template><div>
     <activity id="main-view" :title="title" icon="menu" layer="5">
+        <template slot="nav">
+            <a href="#" class="avatar"><i class="material-icons">person</i></a>
+            <div class="score">1337</div>
+        </template>
+        
         <navitem name="Home" :selected="true">
             <module-list-view @titleChanged="changeTitle"></module-list-view>
         </navitem>
@@ -13,11 +18,11 @@
         </navitem>
 
         <navitem name="Regeln">
-
+            <rules-view @titleChanged="changeTitle"></rules-view>
         </navitem>
         
         <navitem name="Info">
-
+            <info-view @titleChanged="changeTitle"></info-view>
         </navitem>
         
         <navitem name="Logout" @click="doLogout"></navitem>
@@ -36,6 +41,8 @@ import Navitem from '../components/Navitem.vue';
 
 import ModuleListView from './ModuleListView.vue';
 import QuestionListView from './QuestionListView.vue';
+import RulesView from './RulesView.vue';
+import InfoView from './InfoView.vue';
 
 export default {
     name: 'mainView',
@@ -51,6 +58,8 @@ export default {
         Navitem,
         ModuleListView,
         QuestionListView
+        RulesView,
+        InfoView
     },
     mounted() {
         this.navitems = this.$children[0].$children;
@@ -92,4 +101,9 @@ export default {
 </script>
 
 <style>
+.activity-nav .score,
+.activity-nav .avatar {
+    float: right;
+    padding: 0 18px;
+}
 </style>
