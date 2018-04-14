@@ -24,12 +24,11 @@
                 <label for="input-solutionText">Lösung</label>
             </div>
             <div class="col s12 child-component">
-                <h5 v-if="!questionView">Bitte wähle einen Fragetypen</h5>
                 <component v-bind:is="questionView" ref="current-view">
                 <!-- component changes when vm.currentView changes! -->
                 </component>
             </div>
-            <button type="submit" class="col s12 waves-effect waves-light btn" :disabled="submitInProgess">FRAGE ABSENDEN</button>
+            <button type="submit" class="col s12 waves-effect waves-light btn" :disabled="!submitEnabled">FRAGE ABSENDEN</button>
         </form>
     </activity>
 </template>
@@ -57,7 +56,7 @@ export default {
             selectedModule: -1,
             questionText: "",
             solutionText: "",
-            submitInProgess: false
+            submitInProgess: true
         }
     },
     components: {
@@ -78,6 +77,9 @@ export default {
             }
 
             return this.questionTypes[this.selectedType - 1].view;
+        },
+        submitEnabled: function() {
+            return this.selectedType > 0 && this.selectedModule > 0 && !this.submitInProgress;
         }
     },
     methods: {
@@ -103,7 +105,7 @@ export default {
                 Cache.remove(App.CACHE.MY_QUESTIONS);
                 this.$emit('close');
             }).catch(e => {
-                this.submitInProgess = false;
+                this.submitInProgress = false;
                 throw 'Something went wrong!';
             });
         }
