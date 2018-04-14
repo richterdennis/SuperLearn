@@ -82,6 +82,7 @@ export default {
     },
     methods: {
         close() {
+            Event.$emit('return-to-questionlist')
             this.$emit('close');
         },
         submitQuestion() {
@@ -102,7 +103,7 @@ export default {
             QuestionRouter.postNewQuestion(question).then((response) => {
                 Cache.remove(App.CACHE.MY_QUESTIONS);
                 Event.$emit('update-my-questions');
-                this.$emit('close');
+                this.close();
             }).catch(e => {
                 this.submitInProgress = false;
                 console.error(e);
