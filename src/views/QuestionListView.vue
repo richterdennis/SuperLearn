@@ -90,6 +90,13 @@ export default {
             this.questions = questions;
         })
     },
+    created() {
+        Event.$on('update-my-questions', () => {
+            QuestionRouter.getQuestions().then(questions => {
+                this.questions = questions;
+            });
+        })
+    },
     computed: {
         filteredQuestions: function () {
             let compareFunction = this.sortByName;

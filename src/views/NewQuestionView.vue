@@ -103,9 +103,11 @@ export default {
 
             QuestionRouter.postNewQuestion(question).then((response) => {
                 Cache.remove(App.CACHE.MY_QUESTIONS);
+                Event.$emit('update-my-questions');
                 this.$emit('close');
             }).catch(e => {
                 this.submitInProgress = false;
+                console.error(e);
                 throw 'Something went wrong!';
             });
         }
