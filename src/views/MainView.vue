@@ -33,6 +33,14 @@
     </activity>
 
     <ul class="side-nav" id="mobile-nav">
+        <li>
+            <div class="user-view">
+                <div class="background green"></div>
+                <img class="circle  white" :src="url">
+                <span class="white-text name"><b>{{user.nickname}}</b></span>
+                <span class="white-text email">{{user.email}}</span>
+            </div>
+        </li>
         <li v-for="item in navitems" :key="item.name" :class="{'active': item.isActive}">
             <a href="#" @click="navItemClicked(item)">{{item.name}}</a>
         </li>
@@ -59,7 +67,8 @@ export default {
             title: 'Home',
             navitems: [],
             currentItem: {},
-            user: null
+            user: [],
+            url: "../assets/profile_picture.png",
         }
     },
     components: {
