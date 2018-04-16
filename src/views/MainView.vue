@@ -1,8 +1,8 @@
 <template><div>
     <activity id="main-view" :title="title" icon="menu" layer="5">
         <template slot="nav">
-            <a href="#" class="avatar"><i class="material-icons">person</i></a>
-            <div class="score">1337</div>
+            <a href="#" class="avatar" @click.prevent="navItemClicked(navitems[1])"><i class="material-icons">person</i></a>
+            <div class="score" v-if="user">{{user.score}}</div>
         </template>
 
         <navitem name="Home" :selected="true">
@@ -43,6 +43,9 @@
 import Activity from '../components/Activity.vue';
 import Navitem from '../components/Navitem.vue';
 
+import * as Cache from '../classes/Cache.js';
+import { UserRouter } from '../classes/Router.js';
+
 import ModuleListView from './ModuleListView.vue';
 import QuestionListView from './QuestionListView.vue';
 import RulesView from './RulesView.vue';
@@ -56,6 +59,7 @@ export default {
             title: 'Home',
             navitems: [],
             currentItem: {},
+            user: null
         }
     },
     components: {
@@ -76,6 +80,11 @@ export default {
             }
 
             return false;
+        });
+
+        this.user = Cache.getLast(App.CACHE.USER_ME);
+        UserRouter.getMe().then(user => {
+            this.user = user;
         });
 
         const $collapseButton = $("#main-view .button-collapse");
