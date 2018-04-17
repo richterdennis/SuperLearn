@@ -1,7 +1,5 @@
 <template>
     <form id="sign-on-form" @submit.prevent="doRegister">
-        <!-- <h4 class="center green-text">Account erstellen</h4> -->
-
         <div class="input-field">
             <input id="so-email" name="so-email" type="email" class="validate" required v-model="email">
             <label for="so-email">Email</label>
@@ -30,7 +28,6 @@
                 <label for="rules_check">Ich habe die <a href="#">Regeln</a> gelesen.</label>
             </p>
         <input type="submit" class="btn-large green" :disabled="!checked">
-        <!-- <a href="#" @click="currentView=SignInView">Du hast schon einen Account?</a><br> -->
     </form>
 </template>
 
@@ -62,8 +59,6 @@ export default {
         }).catch(err => {
             throw 'Something went wrong!';
         });
-
-       // this.addTriangleTo(document.getElementById('sign-on-view'));
     },
     methods: {
         doRegister() {
@@ -79,14 +74,6 @@ export default {
             }).catch(e => {
                 throw 'Something went wrong!';
             });
-        },
-        addTriangleTo(target) {
-            var dimensions = target.getClientRects()[0];
-            var pattern = Trianglify({
-                width: dimensions.width,
-                height: dimensions.height
-            });
-            target.style['background-image'] = 'url(' + pattern.png() + ')';
         }
     }
 }

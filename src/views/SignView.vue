@@ -13,21 +13,18 @@
                             <div class="col s12">
                             <ul class="tabs fixed-fixed-width">
                                 <li class="tab col s6"><a class="active green-text" href="#sign-in">ANMELDEN</a></li>
-                                <li class="tab col s6"><a class="green-text" href="#sign-on ">REGISTRIEREN</a></li>
+                                <li class="tab col s6"><a class="green-text" href="#sign-on">REGISTRIEREN</a></li>
                             </ul>
                             </div>
                             <div id="sign-in" class="col s12"><sign-in-view @loggedInStateChange="onLoggedInStateChange"></sign-in-view></div>
                             <div id="sign-on" class="col s12"><sign-on-view @loggedInStateChange="onLoggedInStateChange"></sign-on-view></div>
                         </div>
-
                         <!-- <component :is="currentView"></component> -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
+    </div>  
 </template>
 
 <script>
@@ -51,9 +48,6 @@ export default {
         Cache.remove(App.CACHE.USER_ME);
         Cache.remove(App.CACHE.MY_QUESTIONS);
         Cache.remove(App.CACHE.REPORTS);
-
-        $('ul.tabs').tabs();
-        $('#tabs-swipe-demo').tabs({ 'swipeable': true });
     },
     methods: {
         onLoggedInStateChange() {
@@ -71,25 +65,39 @@ export default {
     width: 100%;
     height: 100%;
     background-color: #f4f4f4;
-    overflow: hidden;
+    overflow-x: hidden;
 }
-img.responsive-img {
+img.responsive-img{
     width: 100%;
 }
 input[type=submit] {
     width: 100%;
     margin: 10px 0 10px 0;
 }
-
-.tabs > .indicator {
-    background: #4CAF50;
+.tabs .indicator {
+    background-color:#00c853;
+}
+.card {
+    margin-top: 10%;
 }
 
- /* TODO: anpassung mobile (import von Dennis) */
-@media only screen and (min-width: 600px) {
+@media (max-device-width: 600px) 
+  {
     .card {
-        margin-top: 5%;
+        width: 100%;
+        margin: 0;
+    }
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .row .col.s12 {
+        width: 100%;
+        margin: 0;
+        padding:0;
     }
 }
 
 </style>
+

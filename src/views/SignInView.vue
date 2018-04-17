@@ -1,7 +1,5 @@
 <template>
     <form id="sign-in-form" @submit.prevent="doLogin">
-        <!-- <h4 class="center green-text">Anmelden</h4> -->
-        
         <div class="input-field">
             <label for="si-email">Email</label>
             <input id="si-email" name="si-email" type="email" class="validate" required v-model="email">
@@ -12,7 +10,6 @@
         </div>
         <input type="submit" class="btn-large green">
         <a href="#">Passwort vergessen?</a><br>
-        <!-- <a href="#" @click="currentView='SignOnView'">Noch kein Mitglied?</a> -->
     </form>
  </template>
 
