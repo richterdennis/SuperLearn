@@ -9,7 +9,9 @@ export default {
     name: 'navitem',
     props: {
         name: {required: true},
-        selected: {default: false}
+        selector: {required: true},
+        selected: {default: false},
+        hidden: {default: false}
     },
     data() {
         return {

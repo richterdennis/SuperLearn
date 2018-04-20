@@ -4,7 +4,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
-                    <span class="brand-logo hide-on-med-and-down"></span>
+                    <span class="brand-logo hide-on-med-and-down" @click="onLogoClicked"></span>
                     <span class="nav-title">{{title}}</span>
                     <slot name="nav"></slot>
                 </div>
@@ -23,6 +23,9 @@ export default {
     methods: {
         onIconClicked() {
             this.$emit('onIconClicked');
+        },
+        onLogoClicked() {
+            this.$emit('logoClicked');
         }
     }
 }
@@ -37,6 +40,7 @@ export default {
     width: 100%;
     height: 100%;
     background: white;
+    margin-bottom: 0;
 }
 
 .activity .activity-nav .button-collapse {
