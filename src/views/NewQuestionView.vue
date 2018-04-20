@@ -2,34 +2,31 @@
     <activity id="new-question-view" :title="title" icon="close" layer="10" @onIconClicked="close">
         <form class="row" id="new-question-form" @submit.prevent="submitQuestion">
             <div class="input-field col s12">
-                <select name="select-module" id="select-module" v-model="selectedModule" ref="select-module">
+                <select name="select-module" id="select-module" v-model="selectedModule" class="validate" required ref="select-module">
                     <option value="-1" disabled selected>Bitte wähle ein Modul...</option>
                     <option v-for="mod in sortedModules" :key="mod.id" :value="mod.id">{{ mod.long }}</option>
                 </select>
                 <label for="select-module">Modul</label>
             </div>
             <div class="input-field col s12">
-                <select name="select-question-type" id="select-question-type" v-model="selectedType" ref="select-question-type">
+                <select name="select-question-type" id="select-question-type" v-model="selectedType" class="validate" required ref="select-question-type">
                     <option value="-1" disabled selected>...und einen Fragetypen</option>
                     <option v-for="questionType in questionTypes" :key="questionType.type" :value="questionType.type">{{ questionType.name }}</option>
                 </select>
                 <label for="select-question-type">Fragetyp</label>
             </div>
             <div class="input-field col s12">
-                <input type="text" name="input-questionText" id="input-questionText" v-model="questionText" required>
-                <label for="input-questionText">Fragetext</label>
+                <input type="text" name="input-questionText" id="input-questionText" v-model="questionText" class="validate" pattern=".{3,100}" required>
+                <label for="input-questionText" data-error="Der Fragetext muss zwischen 3 und 100 Zeichen lang sein!">Fragetext</label>
             </div>
             <div class="input-field col s12">
                 <textarea id="input-solutionText" class="materialize-textarea" v-model="solutionText"></textarea>
                 <label for="input-solutionText">Lösung</label>
             </div>
             <div class="col s12 child-component">
-                <h5 v-if="!questionView">Bitte wähle einen Fragetypen</h5>
-                <component v-bind:is="questionView" ref="current-view">
-                <!-- component changes when vm.currentView changes! -->
-                </component>
+                <component v-bind:is="questionView" ref="current-view"></component>
             </div>
-            <button type="submit" class="col s12 waves-effect waves-light btn" :disabled="submitInProgess">FRAGE ABSENDEN</button>
+            <button type="submit" class="col s12 waves-effect waves-light btn" :disabled="!submitEnabled">FRAGE ABSENDEN</button>
         </form>
     </activity>
 </template>
@@ -57,7 +54,7 @@ export default {
             selectedModule: -1,
             questionText: "",
             solutionText: "",
-            submitInProgess: false
+            submitInProgess: true
         }
     },
     components: {
@@ -78,10 +75,14 @@ export default {
             }
 
             return this.questionTypes[this.selectedType - 1].view;
+        },
+        submitEnabled: function() {
+            return this.selectedType > 0 && this.selectedModule > 0 && !this.submitInProgress;
         }
     },
     methods: {
         close() {
+            Event.$emit('return-to-questionlist')
             this.$emit('close');
         },
         submitQuestion() {
@@ -101,9 +102,11 @@ export default {
 
             QuestionRouter.postNewQuestion(question).then((response) => {
                 Cache.remove(App.CACHE.MY_QUESTIONS);
-                this.$emit('close');
+                Event.$emit('update-my-questions');
+                this.close();
             }).catch(e => {
-                this.submitInProgess = false;
+                this.submitInProgress = false;
+                console.error(e);
                 throw 'Something went wrong!';
             });
         }

@@ -6,6 +6,7 @@ import Api from "./classes/Api";
 
 window.Cache = Cache;
 window.Api = Api;
+window.Event = new Vue();
 
 window.App = window.App || {};
 Object.assign(window.App, {
