@@ -1,5 +1,12 @@
 <template>
     <activity id="round-view" :title="title" icon="close" layer="10" @onIconClicked="close">
+        <template slot="nav">
+            <ul class="right" v-if="questions.length || answerResponses.length">
+                <li><a href="#question-report-modal" class="modal-trigger" @click="openInfoOrReport"><i class="material-icons">flag</i></a></li>
+                <li><a href="#question-info-modal" class="modal-trigger" @click="openInfoOrReport"><i class="material-icons">info_outline</i></a></li>
+            </ul>
+        </template>
+
         <template v-for="question in questions">
             <question-view :question="question" :key="question.id" @answer="onAnswer"></question-view>
         </template>
@@ -8,6 +15,11 @@
         </template>
         <template v-for="roundResponse in roundResponses">
             <round-response-view :round="roundResponse.round" :answers="roundResponse.givenAnswers" :key="roundResponse.round.id"></round-response-view>
+        </template>
+
+        <template slot="outside">
+            <question-report-view id="question-report-modal" question="infoOrReport"></question-report-view>
+            <question-info-view id="question-info-modal" question="infoOrReport"></question-info-view>
         </template>
     </activity>
 </template>
@@ -18,6 +30,8 @@ import Activity from '../components/Activity.vue';
 import QuestionView from './QuestionView.vue';
 import AnswerResponseView from './AnswerResponseView.vue';
 import RoundResponseView from './RoundResponseView.vue';
+import QuestionReportView from './QuestionReportView.vue';
+import QuestionInfoView from './QuestionInfoView.vue';
 
 import { RoundRouter } from '../classes/Router.js';
 
@@ -28,7 +42,9 @@ export default {
         Activity,
         QuestionView,
         AnswerResponseView,
-        RoundResponseView
+        RoundResponseView,
+        QuestionReportView,
+        QuestionInfoView
     },
     data() {
         return {
@@ -37,7 +53,8 @@ export default {
             questions: [],
             givenAnswers: [],
             answerResponses: [],
-            roundResponses: []
+            roundResponses: [],
+            infoOrReport: null
         }
     },
     mounted() {
@@ -45,6 +62,8 @@ export default {
             this.round = round;
             this.startRound();
         });
+
+        $('.modal').modal();
     },
     methods: {
         startRound() {
@@ -117,6 +136,9 @@ export default {
         },
         close() {
             this.$emit('close');
+        },
+        openInfoOrReport() {
+            this.infoOrReport = this.questions[0] || this.answerResponses[0].question;
         }
     }
 }

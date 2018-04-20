@@ -1,18 +1,21 @@
 <template>
-    <div class="activity row" :style="'z-index: ' + layer + ';'">
-        <div class="activity-nav navbar-fixed">
-            <nav>
-                <div class="nav-wrapper green accent-4">
-                    <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
-                    <span class="brand-logo center hide-on-med-and-down" @click="onLogoClicked"></span>
-                    <span class="nav-title">{{title}}</span>
-                    <slot name="nav"></slot>
-                </div>
-            </nav>
+    <div>
+        <div class="activity row" :style="'z-index: ' + layer + ';'">
+            <div class="activity-nav navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper green accent-4">
+                        <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
+                        <span class="brand-logo center hide-on-med-and-down" @click="onLogoClicked"></span>
+                        <span class="nav-title">{{title}}</span>
+                        <slot name="nav"></slot>
+                    </div>
+                </nav>
+            </div>
+            <div class="activity-content col s12 push-l2 l8 push-xl3 xl6">
+                <slot></slot>
+            </div>
         </div>
-        <div class="activity-content col s12 push-l2 l8 push-xl3 xl6">
-            <slot></slot>
-        </div>
+        <slot name="outside"></slot>
     </div>
 </template>
 
