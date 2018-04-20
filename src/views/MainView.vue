@@ -1,48 +1,48 @@
 <template><div>
-    <activity id="main-view" :title="title" icon="menu" layer="5">
+    <activity id="main-view" :title="title" icon="menu" layer="5" @logoClicked="navigate('home')">
         <template slot="nav">
-            <a href="#" class="avatar" @click.prevent="navItemClicked(navitems[1])"><i class="material-icons">person</i></a>
+            <a href="#" class="avatar" @click.prevent="navigate('profile')"><i class="material-icons">person</i></a>
             <div class="score" v-if="user">{{user.score}}</div>
         </template>
 
-        <navitem name="Home" :selected="true">
+        <navitem selector="home" name="Home" :selected="true">
             <module-list-view @titleChanged="changeTitle"></module-list-view>
         </navitem>
 
-        <navitem name="Mein Profil">
+        <navitem selector="profile" name="Mein Profil" hidden="true">
             <user-profile-view></user-profile-view>
         </navitem>
 
-        <navitem name="Meine Fragen">
+        <navitem selector="my_questions" name="Meine Fragen">
             <question-list-view></question-list-view>
         </navitem>
 
-        <navitem name="Wall of Fame">
+        <navitem selector="wall_of_fame" name="Wall of Fame">
 
         </navitem>
 
-        <navitem name="Regeln">
+        <navitem selector="rules" name="Regeln">
             <rules-view @titleChanged="changeTitle"></rules-view>
         </navitem>
 
-        <navitem name="Info">
+        <navitem selector="info" name="Info">
             <info-view @titleChanged="changeTitle"></info-view>
         </navitem>
 
-        <navitem name="Logout" @click="doLogout"></navitem>
+        <navitem selector="logout" name="Logout" @click="doLogout"></navitem>
     </activity>
 
     <ul class="side-nav" id="mobile-nav">
         <li>
-            <div class="user-view">
+            <div class="user-view" @click="navigate('profile')">
                 <div class="background green"></div>
                 <img class="circle  white" :src="url">
                 <span class="white-text name"><b>{{user.nickname}}</b></span>
                 <span class="white-text email">{{user.email}}</span>
             </div>
         </li>
-        <li v-for="item in navitems" :key="item.name" :class="{'active': item.isActive}">
-            <a href="#" @click="navItemClicked(item)">{{item.name}}</a>
+        <li v-for="item in navitems" :key="item.name" :class="{'active': item.isActive}" v-show="!item.hidden">
+            <a href="#" @click="navigate(item.selector)">{{item.name}}</a>
         </li>
     </ul>
 </div></template>
@@ -103,14 +103,14 @@ export default {
         });
     },
     methods: {
-        navItemClicked(selectedItem) {
-            this.currentItem = selectedItem;
-            this.navitems.forEach(item => {
-                item.isActive = (item.name == selectedItem.name);
-            });
+        navigate(selector) {
+            for(const item of this.navitems) {
+                item.isActive = (item.selector == selector);
+                if(item.isActive) this.currentItem = item;
+            }
 
-            this.title = selectedItem.name;
-            selectedItem.$emit('click');
+            this.title = this.currentItem.name;
+            this.currentItem.$emit('click');
         },
         changeTitle(title) {
             this.title = title;
