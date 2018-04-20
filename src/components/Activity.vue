@@ -4,7 +4,7 @@
             <nav>
                 <div class="nav-wrapper green accent-4">
                     <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
-                    <span class="brand-logo hide-on-med-and-down" @click="onLogoClicked"></span>
+                    <span class="brand-logo center hide-on-med-and-down" @click="onLogoClicked"></span>
                     <span class="nav-title">{{title}}</span>
                     <slot name="nav"></slot>
                 </div>
