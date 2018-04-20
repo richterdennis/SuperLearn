@@ -2,7 +2,7 @@
     <div id="module-list-view" class="collection">
         <a href="#" class="collection-item back green-text accent-4" v-if="layer == 1" @click.prevent="showSemesterList"><i class="material-icons">arrow_back</i> <span>Zurück</span></a>
         <a href="#" class="collection-item avatar green-text accent-4" v-for="item in list" :key="item.id" @click.prevent="open(item)">
-            <i class="circle">{{item.short}}</i>
+            <i class="circle" :class="'status' + item.status" @click.stop="layer == 1 && changeStatus(item)">{{item.short}}</i>
             <span class="title">{{item.long}}</span>
             <span class="question-counter right">{{item.questions}}</span>
             <div class="progress">
@@ -40,7 +40,12 @@ export default {
             // if item is type of semester
             if(this.layer == 0) {
                 this.layer = 1;
-                this.list = item.modules;
+                this.list = item.modules.sort((a, b) => {
+                    if(a.status != b.status)
+                        return (a.status ^ 1) - (b.status ^ 1);
+
+                    return a.long.toLowerCase().localeCompare(b.long.toLowerCase());
+                });
                 this.$emit('titleChanged', item.long);
             }
             else {
@@ -63,7 +68,8 @@ export default {
                 long: 'Meine Module',
                 questions: 0,
                 progress: 0,
-                modules: []
+                modules: [],
+                status: 0
             });
 
             this.modules.forEach(module => {
@@ -75,7 +81,8 @@ export default {
                             long: i + '. Semester',
                             questions: 0,
                             progress: 0,
-                            modules: []
+                            modules: [],
+                            status: 0
                         });
                     }
                 }
@@ -99,6 +106,30 @@ export default {
             });
 
             return semester;
+        },
+        changeStatus(module) {
+            module.status = (module.status + 1) % 3;
+
+            if(module.status == 1) {
+                this.semester[0].modules.push(module);
+            }
+            else {
+                const index = this.semester[0].modules.findIndex(
+                    m => m.id == module.id
+                );
+                ~index && this.semester[0].modules.splice(index, 1);
+            }
+
+            ModuleRouter.setModuleStatus(module.id, module.status);
+            const statusTexts = [
+                'demarkiert',
+                'als Favorit markiert',
+                'als Bestanden markiert'
+            ];
+            Materialize.toast(
+                'Modul wurde ' + statusTexts[module.status],
+                1000
+            );
         }
     }
 }
@@ -111,6 +142,24 @@ export default {
 
 .collection-item.avatar {
     min-height: 62px !important;
+}
+
+.collection-item.avatar .circle {
+    font-size: 14px !important;
+    color: #666 !important;
+    border: 1px solid #ccc;
+}
+
+.collection-item.avatar .circle.status0 {
+    background-color: #FFF !important;
+}
+
+.collection-item.avatar .circle.status1 {
+    background-color: #bcfcc6 !important;
+}
+
+.collection-item.avatar .circle.status2 {
+    background-color: #ccc !important;
 }
 
 .collection-item.back {
