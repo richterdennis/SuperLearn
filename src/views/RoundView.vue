@@ -54,7 +54,7 @@ export default {
             givenAnswers: [],
             answerResponses: [],
             roundResponses: [],
-            infoOrReport: null
+            infoOrReport: {}
         }
     },
     mounted() {
