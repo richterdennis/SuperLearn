@@ -18,8 +18,8 @@
         </template>
 
         <template slot="outside">
-            <question-report-view id="question-report-modal" question="infoOrReport"></question-report-view>
-            <question-info-view id="question-info-modal" question="infoOrReport"></question-info-view>
+            <question-report-view id="question-report-modal" :question="infoOrReport"></question-report-view>
+            <question-info-view id="question-info-modal" :question="infoOrReport"></question-info-view>
         </template>
     </activity>
 </template>
@@ -54,7 +54,7 @@ export default {
             givenAnswers: [],
             answerResponses: [],
             roundResponses: [],
-            infoOrReport: null
+            infoOrReport: {}
         }
     },
     mounted() {
