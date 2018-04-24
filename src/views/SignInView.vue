@@ -1,22 +1,17 @@
 <template>
-    <form id="sign-in-view" class="col container" @submit.prevent="doLogin">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="si-email" name="si-email" type="email" class="validate" required v-model="email">
-                <label for="si-email">Email</label>
-            </div>
+    <form id="sign-in-form" @submit.prevent="doLogin">
+        <div class="input-field">
+            <label for="si-email">Email</label>
+            <input id="si-email" name="si-email" type="email" class="validate" required v-model="email">
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="si-password" name="si-password" type="password" class="validate" required v-model="password">
-                <label for="si-password">Password</label>
-            </div>
+        <div class="input-field">
+            <label for="si-password">Passwort</label>
+            <input id="si-password" name="si-password" type="password" class="validate" required v-model="password">
         </div>
-        <div class="row">
-            <button type="submit" class="waves-effect waves-light btn">LOGIN</button>
-        </div>
+        <input type="submit" class="btn-large green">
+        <a href="#">Passwort vergessen?</a><br>
     </form>
-</template>
+ </template>
 
 <script>
 import { UserRouter  } from '../classes/Router.js';
@@ -26,7 +21,8 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            currentView:'SignInView'
         }
     },
     methods: {
@@ -55,5 +51,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>
