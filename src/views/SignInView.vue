@@ -31,7 +31,6 @@ export default {
                 email: this.email,
 		        password: this.password
             }).then(token => {
-                Cache.save();
                 this.$emit('loggedInStateChange');
             }).catch(e => {
                 if(e.status == 404) {

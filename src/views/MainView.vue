@@ -117,7 +117,6 @@ export default {
         },
         doLogout() {
             Cache.clear();
-            Cache.save();
             this.$emit('loggedInStateChange');
         }
     }

@@ -1,7 +1,7 @@
 <template>
     <div id="module-list-view" class="collection">
-        <a href="#" class="collection-item back" v-if="layer == 1" @click.prevent="showSemesterList"><i class="material-icons">arrow_back</i> <span>Zurück</span></a>
-        <a href="#" class="collection-item avatar" v-for="item in list" :key="item.id" @click.prevent="open(item)">
+        <a href="#" class="collection-item back green-text accent-4" v-if="layer == 1" @click.prevent="showSemesterList"><i class="material-icons">arrow_back</i> <span>Zurück</span></a>
+        <a href="#" class="collection-item avatar green-text accent-4" v-for="item in list" :key="item.id" @click.prevent="open(item)">
             <i class="circle" :class="'status' + item.status" @click.stop="layer == 1 && changeStatus(item)">{{item.short}}</i>
             <span class="title">{{item.long}}</span>
             <span class="question-counter right">{{item.questions}}</span>
@@ -49,7 +49,9 @@ export default {
                 this.$emit('titleChanged', item.long);
             }
             else {
-                App.startView(RoundView);
+                App.startView(RoundView, {
+                    module: item
+                });
             }
         },
         showSemesterList() {
