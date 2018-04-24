@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
 </template>
 
 <script>
@@ -47,6 +47,8 @@ export default {
         Cache.remove(App.CACHE.USER_ME);
         Cache.remove(App.CACHE.MY_QUESTIONS);
         Cache.remove(App.CACHE.REPORTS);
+
+        $('ul.tabs').tabs();
     },
     methods: {
         onLoggedInStateChange() {
@@ -80,7 +82,7 @@ input[type=submit] {
     margin-top: 10%;
 }
 
-@media (max-device-width: 600px) 
+@media (max-device-width: 600px)
   {
     .card {
         width: 100%;
@@ -99,4 +101,3 @@ input[type=submit] {
 }
 
 </style>
-
