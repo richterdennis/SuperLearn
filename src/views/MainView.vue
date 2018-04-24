@@ -67,7 +67,7 @@ export default {
             title: 'Home',
             navitems: [],
             currentItem: {},
-            user: [],
+            user: {},
             url: "../assets/profile_picture.png",
         }
     },
@@ -91,7 +91,7 @@ export default {
             return false;
         });
 
-        this.user = Cache.getLast(App.CACHE.USER_ME);
+        this.user = Cache.get(App.CACHE.USER_ME) || {};
         UserRouter.getMe().then(user => {
             this.user = user;
         });
