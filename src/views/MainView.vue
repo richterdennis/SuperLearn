@@ -17,8 +17,8 @@
             <question-list-view></question-list-view>
         </navitem>
 
-        <navitem selector="wall_of_fame" name="Wall of Fame">
-
+        <navitem name="Wall of Fame">
+            <wall-of-fame-view></wall-of-fame-view>
         </navitem>
 
         <navitem selector="rules" name="Regeln">
@@ -59,6 +59,7 @@ import QuestionListView from './QuestionListView.vue';
 import RulesView from './RulesView.vue';
 import InfoView from './InfoView.vue';
 import UserProfileView from './UserProfileView.vue';
+import WallOfFameView from './WallOfFameView.vue';
 
 export default {
     name: 'mainView',
@@ -78,7 +79,8 @@ export default {
         RulesView,
         InfoView,
         ModuleListView,
-        UserProfileView
+        UserProfileView,
+        WallOfFameView
     },
     mounted() {
         this.navitems = this.$children[0].$children;
