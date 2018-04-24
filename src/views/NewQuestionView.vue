@@ -21,7 +21,7 @@
             </div>
             <div class="input-field col s12">
                 <textarea id="input-solutionText" class="materialize-textarea" v-model="solutionText"></textarea>
-                <label for="input-solutionText">Lösung</label>
+                <label for="input-solutionText">Lösungstext</label>
             </div>
             <div class="col s12 child-component">
                 <component v-bind:is="questionView" ref="current-view"></component>
@@ -88,14 +88,14 @@ export default {
         submitQuestion() {
             this.submitInProgess = true;
             let question = {
-                text: this.questionText,
+                text: this.questionText.trim(),
                 image: "",
                 questionType: this.selectedType,
                 moduleId: this.selectedModule,
                 tags: [1],
                 answers: this.$refs["current-view"].getAnswers(),
-                solution: this.solutionText ? {
-                    text: this.solutionText,
+                solution: this.solutionText.trim() ? {
+                    text: this.solutionText.trim(),
                     image: ""
                 } : null
             }

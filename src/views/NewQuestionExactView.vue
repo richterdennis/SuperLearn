@@ -21,7 +21,7 @@ export default {
         getAnswers() {
             return [
                 {
-                    text: this.exactAnswer,
+                    text: this.exactAnswer.trim(),
                     correct: true
                 }
             ]

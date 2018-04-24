@@ -4,7 +4,7 @@
             <div class="answer" v-for="(answer, n) in answers" :key="n">
                 <div class="input-field col s11">
                     <input type="text" :name="'answer' + n" :id="'answer' + n" v-model="answer.text" class="validate" required>
-                    <label :for="'answer' + n" data-error="Bitte gib einen Antworttext ein.">Antwort {{n}}</label>
+                    <label :for="'answer' + n" data-error="Bitte gib einen Antworttext ein.">Antwort {{n+1}}</label>
                 </div>
                 <div class="col s1">
                     <input type="radio" name="correct-answer" :id="'correct-answer' + n" :value="n" v-model="correctAnswer">
@@ -34,7 +34,7 @@ export default {
             let i = 0;
             this.answers.forEach(element => {
                 answer.push({
-                    text: element.text,
+                    text: element.text.trim(),
                     correct: this.correctAnswer == i++
                 });
             });

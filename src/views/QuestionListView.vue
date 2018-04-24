@@ -149,7 +149,17 @@ export default {
             return a.created > b.created ? 1 : -1;
         },
         matchQuestionText(question) {
-            return question.text.toLowerCase().match(this.searchString.toLowerCase());
+            const search = this.searchString.trim().toLowerCase();
+            const qModule = Cache.getLast(App.CACHE.MODULES).find(
+                module => module.id == question.moduleId
+            );
+            return (
+                question.text.toLowerCase().match(search)
+                ||
+                qModule.short.toLowerCase().match(search)
+                ||
+                qModule.long.toLowerCase().match(search)
+            );
         },
         openNewQuestionView() {
             this.questionListVisible = false;
@@ -194,4 +204,3 @@ export default {
         border-bottom: 1px solid #ddd;
     }
 </style>
-
