@@ -1,5 +1,5 @@
 <template>
-    <div class="question-list-view">
+    <div class="question-list-view" v-show="questionListVisible">
         <ul class="collapsible" data-collapsible="accordion">
             <li>
                 <div class="questionlist-header">
@@ -76,7 +76,8 @@ export default {
             ],
             sortby: -1,
             orderby: -1,
-            searchString: ""
+            searchString: "",
+            questionListVisible: true
         }
     },
     mounted() {
@@ -88,6 +89,16 @@ export default {
 
         QuestionRouter.getQuestions().then(questions => {
             this.questions = questions;
+        })
+    },
+    created() {
+        Event.$on('update-my-questions', () => {
+            QuestionRouter.getQuestions().then(questions => {
+                this.questions = questions;
+            });
+        }),
+        Event.$on('return-to-questionlist', () => {
+            this.questionListVisible = true;
         })
     },
     computed: {
@@ -138,9 +149,20 @@ export default {
             return a.created > b.created ? 1 : -1;
         },
         matchQuestionText(question) {
-            return question.text.toLowerCase().match(this.searchString.toLowerCase());
+            const search = this.searchString.trim().toLowerCase();
+            const qModule = Cache.getLast(App.CACHE.MODULES).find(
+                module => module.id == question.moduleId
+            );
+            return (
+                question.text.toLowerCase().match(search)
+                ||
+                qModule.short.toLowerCase().match(search)
+                ||
+                qModule.long.toLowerCase().match(search)
+            );
         },
         openNewQuestionView() {
+            this.questionListVisible = false;
             App.startView(NewQuestionView);
         }
     }
@@ -182,4 +204,3 @@ export default {
         border-bottom: 1px solid #ddd;
     }
 </style>
-

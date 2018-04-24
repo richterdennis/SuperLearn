@@ -1,16 +1,16 @@
 <template>
 	<div id="info-view">
-        <h4 class="title">SuperLearn</h4>
-        <h6 class="version">Version: 1.0.0</h6>
+        <h4 class="info_title">SuperLearn</h4>
+        <h6 class="info_version">Version: 1.0.0</h6>
 		<p>SuperLearn entsteht im Rahmen des Moduls "MT70 Webanwendungen (Webprogrammierung 2)" 
         der THM. Ziel ist es eine Lernplattform für Studierende zu schaffen. 
         Vorerst wird nur die THM und der Studiengang Medieninformatik unterstützt, 
         weitere folgen erst nach dem Release.</p>
         <h5 class="title_dev">Entwickler:</h5>
         <div class="card-panel text-grey" v-for="dev in developer" :key="dev.name">
-            <img class="bild circle" :src="url"/>
+            <img class="info_bild circle" :src="url"/>
             {{dev.name}}<br>
-            <div class="job">{{dev.job}}</div>
+            <div class="info_job">{{dev.job}}</div>
         </div>
 	</div>
 </template>
@@ -39,14 +39,14 @@ export default{
         padding-right: 3%;
         padding-bottom: 2%;
     }
-    .title{
+    .info_title{
         padding-top: 2%;
     }
-    .version{
+    .info_version{
         color: darkgrey;
         font-style: italic;
     }
-    .bild{
+    .info_bild{
         position: relative;
         float: left;
         height: 60px;
@@ -54,7 +54,7 @@ export default{
         top: -9px;
         left: -9px;
     }
-    .job{
+    .info_job{
         font-size: 12px;
     }
 </style>

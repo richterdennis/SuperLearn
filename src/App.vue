@@ -4,7 +4,7 @@
         <main-view v-if="currentView == VIEWS.MAIN" @loggedInStateChange="onLoggedInStateChange(false)"></main-view>
         <sign-view v-if="currentView == VIEWS.LOGIN" @loggedInStateChange="onLoggedInStateChange(true)"></sign-view>
         <template v-for="childView in childViews">
-            <component :is="childView" :key="childView.name" @close="removeChildView(childView)"></component>
+            <component :is="childView.view" :key="childView.view.name" v-bind="childView.data" @close="removeChildView(childView)"></component>
         </template>
     </div>
 </template>
@@ -45,8 +45,8 @@ export default {
         }
     },
     mounted() {
-        App.startView = (view) => {
-            this.childViews.push(view);
+        App.startView = (view, data) => {
+            this.childViews.push({view, data});
             this.$forceUpdate();
         }
 

@@ -1,18 +1,21 @@
 <template>
-    <div class="activity row" :style="'z-index: ' + layer + ';'">
-        <div class="activity-nav">
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
-                    <span class="brand-logo hide-on-med-and-down"></span>
-                    <span class="nav-title">{{title}}</span>
-                    <slot name="nav"></slot>
-                </div>
-            </nav>
+    <div>
+        <div class="activity row" :style="'z-index: ' + layer + ';'">
+            <div class="activity-nav navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper green accent-4">
+                        <a href="#" class="button-collapse" v-if="icon" @click.prevent="onIconClicked"><i class="material-icons">{{icon}}</i></a>
+                        <span class="brand-logo center hide-on-med-and-down" @click="onLogoClicked"></span>
+                        <span class="nav-title">{{title}}</span>
+                        <slot name="nav"></slot>
+                    </div>
+                </nav>
+            </div>
+            <div class="activity-content col s12 push-l2 l8 push-xl3 xl6">
+                <slot></slot>
+            </div>
         </div>
-        <div class="activity-content col s12 push-l2 l8 push-xl3 xl6">
-            <slot></slot>
-        </div>
+        <slot name="outside"></slot>
     </div>
 </template>
 
@@ -23,6 +26,9 @@ export default {
     methods: {
         onIconClicked() {
             this.$emit('onIconClicked');
+        },
+        onLogoClicked() {
+            this.$emit('logoClicked');
         }
     }
 }
@@ -36,18 +42,21 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: white;
+    background-color: #f1f1f1;
+    margin: 0 !important;
 }
+
 
 .activity .activity-nav .button-collapse {
     display: block !important;
 }
 
 .activity .activity-nav .brand-logo {
-    background: url('/assets/logo_font.png') no-repeat center;
+    background: url('/assets/logo_icon.png') no-repeat center;
     background-size: contain;
-    height: 100%;
+    height: 150%;
     width: 200px;
+    transform: translateY(20px) translateX(-50%);
 }
 
 .activity .activity-nav .nav-title {
@@ -64,13 +73,10 @@ export default {
 
 @media only screen and (min-width: 993px) {
 
-    .activity .activity-nav .nav-title {
-        margin-left: 200px;
-    }
-
     .activity .activity-content {
         padding-top: 2rem;
         padding-bottom: 2rem;
+        margin-top: 60px;
     }
 
     .activity .activity-content > * {
