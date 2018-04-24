@@ -19,7 +19,6 @@
                             <div id="sign-in" class="col s12"><sign-in-view @loggedInStateChange="onLoggedInStateChange"></sign-in-view></div>
                             <div id="sign-on" class="col s12"><sign-on-view @loggedInStateChange="onLoggedInStateChange"></sign-on-view></div>
                         </div>
-                        <!-- <component :is="currentView"></component> -->
                     </div>
                 </div>
             </div>
