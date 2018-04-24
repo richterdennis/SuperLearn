@@ -1,5 +1,8 @@
 <template>
     <div id="answer-response-view">
+        <div class="voting">
+            <voting :score="question.score" :voted="question.voted" @vote="voteQuestion"></voting>
+        </div>
         <div class="response='true'">
             <div class="row container">
                 <div class="valign-wrapper col s12 m8 offset-m2 l6 offset-l3 container">
@@ -9,9 +12,9 @@
                     <div v-else>
                         <img class="responsive-img answer_wrong" src="/assets/questionWrong.png">
                     </div>
-                </div> 
+                </div>
             </div>
-            <div class="row container">     
+            <div class="row container">
             <p class="center flow-text">{{question.text}}</p>
             <hr>
  <!--            <blockquote class="col">
@@ -22,21 +25,28 @@
         <div class="your-answer col s6">
             <blockquote class="" v-bind:class="{'correct_color':answer.correct}">Deine Antwort: {{answer.text}}</blockquote>
         </div>
-        
+
         <div class="correct-answer col s6" v-if="!answer.correct">
             <blockquote class="correct_color">Richtige Antwort: {{correctAnswer}}</blockquote>
         </div>
         </div>
-        <a class="waves-effect waves-light btn-large green accent-4" @click="next"><i class="material-icons right">arrow_forward</i>nächste Frage</a>
+            <a class="waves-effect waves-light btn-large green accent-4" @click="next"><i class="material-icons right">arrow_forward</i>nächste Frage</a>
         </div>
     </div>
 </template>
 
 
 <script>
+import Voting from '../components/Voting.vue';
+
+import { VoteRouter } from '../classes/Router.js';
+
 export default {
     name: 'answerResponseView',
     props: ['question', 'answer'],
+    components: {
+        Voting
+    },
     computed: {
         correctAnswer() {
             const correctAnswer = this.question.answers.find(a => a.correct);
@@ -48,6 +58,14 @@ export default {
         }
     },
     methods: {
+        voteQuestion(vote, score) {
+            this.question.voted = vote;
+            this.question.score = score;
+            VoteRouter.setQuestionVote(vote, this.question.id).catch(err => {
+                // TODO: Handle error
+                console.error(err);
+            });
+        },
         next() {
             this.$emit('next', this.question);
         }
@@ -68,13 +86,13 @@ export default {
 .answer_wrong {
     animation: awrong 2s;
 }
-#answer-response-view a {
+#answer-response-view .btn-large {
     width: 100%;
     margin-top: 10px;
 }
 .correct_color{
   margin: 20px 0;
-  border-left: 5px solid #64dd17; 
+  border-left: 5px solid #64dd17;
 }
 
 @keyframes aright {
