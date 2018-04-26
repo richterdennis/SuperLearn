@@ -204,4 +204,7 @@ export default {
         padding: 10px 10px 0px 10px;
         border-bottom: 1px solid #ddd;
     }
+    .question-list-view .collapsible-body {
+        background: white;
+    }
 </style>
