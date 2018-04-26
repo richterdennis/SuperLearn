@@ -38,6 +38,7 @@ export default{
         padding-left: 3%;
         padding-right: 3%;
         padding-bottom: 2%;
+        background: white;
     }
     .info_title{
         padding-top: 2%;
