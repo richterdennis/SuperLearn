@@ -130,7 +130,8 @@ export default {
 
 <style>
     #new-question-form {
-        padding: 20px 8px 8px 8px
+        padding: 20px 8px 8px 8px;
+        background: white;
     }
     #new-question-form .col.child-component {
         padding: 0;

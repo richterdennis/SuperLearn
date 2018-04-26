@@ -200,6 +200,7 @@ export default {
         margin-bottom: 0  !important;
     }
     .question-list-view .questionlist-header {
+        background: white;
         padding: 10px 10px 0px 10px;
         border-bottom: 1px solid #ddd;
     }
