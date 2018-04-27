@@ -17,7 +17,7 @@
             <question-list-view></question-list-view>
         </navitem>
 
-        <navitem name="Wall of Fame">
+        <navitem selector="wall_of_shame" name="Wall of Fame">
             <wall-of-fame-view></wall-of-fame-view>
         </navitem>
 
@@ -69,7 +69,7 @@ export default {
             navitems: [],
             currentItem: {},
             user: {},
-            url: "../assets/profile_picture.png",
+            url: "assets/profile_picture.png",
         }
     },
     components: {

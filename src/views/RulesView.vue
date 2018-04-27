@@ -15,14 +15,14 @@
 export default{
 	name: 'rule-list',
 	data() {
-		return{ 
+		return{
 			rules: [
-			  {title: '1. Regel' , text: 'Keine Anstößigen oder beleidigenden Usernamen wählen', 
-			  image: '../assets/rules_1.png'},
-      		{title: '2. Regel' , text: 'Vor dem Hochladen muss die Korrektheit einer Frage geprüft werden', 
-			  image: '../assets/rules_2.png'},
-			{title: '3. Regel' , text: 'Anstößige, falsche oder troll Fragen müssen gemeldet werden', 
-			  image: '../assets/rules_3.png'},
+			  {title: '1. Regel' , text: 'Keine Anstößigen oder beleidigenden Usernamen wählen',
+			  image: 'assets/rules_1.png'},
+      		{title: '2. Regel' , text: 'Vor dem Hochladen muss die Korrektheit einer Frage geprüft werden',
+			  image: 'assets/rules_2.png'},
+			{title: '3. Regel' , text: 'Anstößige, falsche oder troll Fragen müssen gemeldet werden',
+			  image: 'assets/rules_3.png'},
     		]
 		}
   	}

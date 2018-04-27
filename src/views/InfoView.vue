@@ -2,9 +2,9 @@
 	<div id="info-view">
         <h4 class="info_title">SuperLearn</h4>
         <h6 class="info_version">Version: 1.0.0</h6>
-		<p>SuperLearn entsteht im Rahmen des Moduls "MT70 Webanwendungen (Webprogrammierung 2)" 
-        der THM. Ziel ist es eine Lernplattform für Studierende zu schaffen. 
-        Vorerst wird nur die THM und der Studiengang Medieninformatik unterstützt, 
+		<p>SuperLearn entsteht im Rahmen des Moduls "MT70 Webanwendungen (Webprogrammierung 2)"
+        der THM. Ziel ist es eine Lernplattform für Studierende zu schaffen.
+        Vorerst wird nur die THM und der Studiengang Medieninformatik unterstützt,
         weitere folgen erst nach dem Release.</p>
         <h5 class="title_dev">Entwickler:</h5>
         <div class="card-panel text-grey" v-for="dev in developer" :key="dev.name">
@@ -19,7 +19,7 @@
 export default{
 	name: 'dev-list',
 	data() {
-		return{ 
+		return{
 			developer: [
             {name: 'Dennis Richter' , job: 'Projektleiter'},
       		{name: 'Julian Mies' , job: 'Designer'},
@@ -27,7 +27,7 @@ export default{
             {name: 'Oguz Bulunmaz' , job: 'Entwickler'},
             ],
 
-            url: "../assets/profile_picture.png",
+            url: "assets/profile_picture.png",
         }
   	}
 }

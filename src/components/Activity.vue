@@ -52,7 +52,7 @@ export default {
 }
 
 .activity .activity-nav .brand-logo {
-    background: url('/assets/logo_icon.png') no-repeat center;
+    background: url('../../assets/logo_icon.png') no-repeat center;
     background-size: contain;
     height: 150%;
     width: 200px;

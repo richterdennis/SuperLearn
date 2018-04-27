@@ -7,10 +7,10 @@
             <div class="row container">
                 <div class="valign-wrapper col s12 m8 offset-m2 l6 offset-l3 container">
                      <div v-if="answer.correct">
-                        <img class="responsive-img answer_right" src="/assets/questionRight.png">
+                        <img class="responsive-img answer_right" src="assets/questionRight.png">
                     </div>
                     <div v-else>
-                        <img class="responsive-img answer_wrong" src="/assets/questionWrong.png">
+                        <img class="responsive-img answer_wrong" src="assets/questionWrong.png">
                     </div>
                 </div>
             </div>

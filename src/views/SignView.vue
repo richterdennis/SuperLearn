@@ -6,7 +6,7 @@
                     <div class="card-content">
                         <div id="img-wrapper" class="row">
                             <div class="col s12 m6 offset-m3">
-                                <img class="responsive-img" src="/../assets/logo_font.png" alt="SuperLearn Logo">
+                                <img class="responsive-img" src="../../assets/logo_font.png" alt="SuperLearn Logo">
                             </div>
                         </div>
                         <div class="row">

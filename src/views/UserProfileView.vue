@@ -9,10 +9,10 @@
             <div><img class="bild circle" :src="url"/></div>
             <div class="userContent">
                 <b>{{user.nickname}}</b><br/>
-                {{user.email}}<p/>     
+                {{user.email}}<p/>
                 <b>Punktestand:</b><br/>
-                {{user.score}}  
-            </div>     
+                {{user.score}}
+            </div>
         </div>
 
         <div id="footer" class="col s12">
@@ -29,13 +29,12 @@ import {UserRouter} from '../classes/Router.js'
 export default {
     name: 'user-profile-view',
 	data() {
-		return{ 
+		return{
 			user: [],
-
-            url: "../assets/profile_picture.png",
+            url: "assets/profile_picture.png",
         }
   	},
-    
+
     mounted() {
         UserRouter.getMe().then(users => {
             this.user = users
@@ -91,5 +90,3 @@ hr{
     padding: 0;
 }
 </style>
-
-

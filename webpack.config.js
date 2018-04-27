@@ -28,6 +28,20 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            emitFile: false,
+                            useRelativePath: true,
+                            publicPath: './assets'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -56,12 +70,12 @@ if (process.env.NODE_ENV === 'production') {
                 NODE_ENV: '"production"'
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     sourceMap: true,
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
         })
