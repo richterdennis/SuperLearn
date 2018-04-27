@@ -177,5 +177,10 @@ export default {
 
 .progress {
     margin-bottom: 0;
+    background-color: lightgrey;
+}
+
+.progress .determinate {
+    background-color:#00c853;
 }
 </style>
