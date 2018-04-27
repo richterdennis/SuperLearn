@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/richterdennis/SuperLearn#readme",
   "dependencies": {
+    "particles.js": "^2.0.0",
     "vue": "^2.5.13"
   },
   "devDependencies": {

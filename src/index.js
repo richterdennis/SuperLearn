@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 
+import "particles.js";
 import mojs from 'mo-js';
 
 import * as Cache from "./classes/Cache";

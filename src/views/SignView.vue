@@ -49,6 +49,7 @@ export default {
         Cache.remove(App.CACHE.REPORTS);
 
         $('ul.tabs').tabs();
+        particlesJS.load('app', '../../assets/particlesjs.json');
     },
     methods: {
         onLoggedInStateChange() {
@@ -59,13 +60,15 @@ export default {
 </script>
 
 <style>
+#app {
+    background-color: #337c33;
+}
 #sign-view {
     position: absolute;
-    top: 0;
+    margin-left: auto;
+    margin-right: auto;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f4f4f4;
+    right: 0;
     overflow-x: hidden;
 }
 img.responsive-img{
